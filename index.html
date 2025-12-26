@@ -2,28 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ConnectSecurly — Secure VPN. Simple Login.</title>
-  <meta name="description" content="ConnectSecurly is a modern VPN for secure browsing with strong encryption and an easy login experience." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ConnectSecurly — Secure VPN with Anti-Phishing & Encrypted DNS</title>
+  <meta name="description" content="ConnectSecurly is a modern VPN with strong encryption, anti-phishing protection, optional encrypted DNS, malware/DNS filtering, and multiple locations." />
   <style>
     :root{
       --bg:#070a12;
-      --bg2:#0b1020;
+      --panel:#0b1020;
       --card:rgba(255,255,255,.06);
-      --card2:rgba(255,255,255,.04);
-      --line:rgba(255,255,255,.10);
+      --line:rgba(255,255,255,.12);
       --text:#eef2ff;
       --muted:rgba(238,242,255,.72);
       --muted2:rgba(238,242,255,.55);
       --accent:#6d5cff;
       --accent2:#22c3ff;
       --good:#31e6b6;
-      --shadow: 0 22px 70px rgba(0,0,0,.45);
-      --radius: 18px;
-      --radius2: 26px;
-      --max: 1120px;
-      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --shadow: 0 24px 70px rgba(0,0,0,.45);
+      --radius:18px;
+      --radius2:24px;
+      --max:1100px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -31,61 +31,56 @@
       font-family:var(--font);
       color:var(--text);
       background:
-        radial-gradient(900px 520px at 18% -10%, rgba(109,92,255,.35), transparent 60%),
-        radial-gradient(900px 520px at 85% -5%, rgba(34,195,255,.24), transparent 60%),
-        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+        radial-gradient(900px 520px at 15% -10%, rgba(109,92,255,.33), transparent 60%),
+        radial-gradient(900px 520px at 85% -5%, rgba(34,195,255,.22), transparent 60%),
+        linear-gradient(180deg, var(--bg) 0%, var(--panel) 100%);
       overflow-x:hidden;
     }
+
     a{color:inherit; text-decoration:none}
     .wrap{max-width:var(--max); margin:0 auto; padding:0 22px}
+
+    /* Top nav - simple */
     .topbar{
-      position:sticky; top:0; z-index:10;
-      backdrop-filter: blur(14px);
+      position:sticky; top:0; z-index:20;
       background: rgba(7,10,18,.55);
+      backdrop-filter: blur(14px);
       border-bottom:1px solid var(--line);
     }
     .nav{
       display:flex; align-items:center; justify-content:space-between;
       padding:14px 0;
-      gap:14px;
+      gap:12px;
     }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight:850;
-      letter-spacing:.2px;
-    }
+    .brand{display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:.2px}
     .logo{
       width:34px; height:34px; border-radius:12px;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
       border:1px solid rgba(255,255,255,.18);
-      box-shadow: 0 18px 45px rgba(109,92,255,.25);
+      box-shadow: 0 18px 45px rgba(109,92,255,.22);
       display:grid; place-items:center;
       flex:0 0 auto;
     }
     .logo svg{width:18px; height:18px; opacity:.95}
     .links{
-      display:flex; gap:18px;
+      display:flex; gap:18px; align-items:center;
       color:var(--muted);
-      font-weight:700;
+      font-weight:750;
       font-size:14px;
-      align-items:center;
     }
     .links a{padding:8px 10px; border-radius:12px}
     .links a:hover{background:rgba(255,255,255,.06); color:var(--text)}
-    .right{
-      display:flex; gap:10px; align-items:center;
-    }
+    .right{display:flex; gap:10px; align-items:center}
+
     .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
       padding:12px 16px;
       border-radius:999px;
-      font-weight:850;
+      font-weight:900;
       border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.06);
-      color:var(--text);
-      cursor:pointer;
       transition: transform .15s ease, background .15s ease, filter .15s ease;
-      user-select:none;
       white-space:nowrap;
     }
     .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.10)}
@@ -96,6 +91,34 @@
     }
     .btn.primary:hover{transform: translateY(-2px); filter:saturate(1.05)}
     .btn.small{padding:10px 14px; font-size:14px}
+
+    /* HERO - minimal Bitwarden style */
+    .hero{padding:62px 0 34px}
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:36px;
+      align-items:center;
+    }
+    @media (max-width:980px){
+      .heroGrid{grid-template-columns:1fr; gap:18px}
+      .links{display:none}
+    }
+    h1{
+      margin:14px 0 12px;
+      font-size:52px;
+      line-height:1.05;
+      letter-spacing:-1px;
+    }
+    @media (max-width:520px){ h1{font-size:40px} }
+
+    .lead{
+      margin:0;
+      color:var(--muted);
+      font-size:16.5px;
+      line-height:1.75;
+      max-width: 62ch;
+    }
     .pill{
       display:inline-flex; align-items:center; gap:8px;
       padding:8px 12px;
@@ -103,129 +126,54 @@
       border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.05);
       color:var(--muted);
-      font-weight:800;
+      font-weight:850;
       font-size:13px;
     }
     .dot{
       width:9px; height:9px; border-radius:999px;
       background: var(--good);
-      box-shadow: 0 0 0 4px rgba(49,230,182,.15);
+      box-shadow: 0 0 0 4px rgba(49,230,182,.14);
     }
+    .cta{margin-top:18px; display:flex; gap:12px; flex-wrap:wrap}
 
-    /* HERO */
-    .hero{
-      padding:52px 0 18px;
-    }
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap:28px;
-      align-items:center;
-    }
-    @media (max-width: 980px){
-      .hero-grid{grid-template-columns:1fr; gap:18px}
-      .links{display:none}
-    }
-    .hero h1{
-      margin:14px 0 10px;
-      font-size:52px;
-      line-height:1.02;
-      letter-spacing:-1px;
-    }
-    @media (max-width:520px){
-      .hero h1{font-size:40px}
-    }
-    .sub{
-      margin:0;
-      color:var(--muted);
-      font-size:16.5px;
-      line-height:1.7;
-      max-width: 60ch;
-    }
-    .cta{
-      margin-top:18px;
-      display:flex; gap:12px; flex-wrap:wrap;
-      align-items:center;
-    }
-    .minirow{
-      margin-top:18px;
-      display:flex; gap:10px; flex-wrap:wrap;
-    }
-    .mini{
-      display:inline-flex; gap:10px; align-items:center;
-      padding:10px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      color:rgba(238,242,255,.80);
-      font-weight:750;
-      font-size:13px;
-    }
-    .mini svg{width:16px; height:16px; opacity:.9}
-
-    /* HERO VISUAL (cleaner, less busy) */
+    /* Right hero visual - very clean */
     .visual{
-      border-radius: var(--radius2);
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.03);
+      border-radius: var(--radius2);
       box-shadow: var(--shadow);
       overflow:hidden;
-      position:relative;
     }
-    .visual header{
+    .visualHead{
       padding:14px 16px;
       border-bottom:1px solid rgba(255,255,255,.10);
       display:flex; justify-content:space-between; align-items:center;
       color:var(--muted2);
-      font-weight:850;
+      font-weight:900;
       font-size:12px;
-      letter-spacing:.35px;
+      letter-spacing:.3px;
       text-transform:uppercase;
     }
-    .visual .body{padding:16px}
-    .visual .cardline{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-      margin-top:12px;
-    }
-    @media (max-width:520px){ .visual .cardline{grid-template-columns:1fr} }
-    .vcard{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      border-radius: 18px;
-      padding:12px;
-      color:rgba(238,242,255,.82);
-    }
-    .vcard b{display:block; margin-bottom:6px}
-    .vcard span{color:var(--muted2); font-size:13px; line-height:1.5}
+    .visualBody{padding:16px}
 
     /* Sections */
-    section{padding:40px 0}
-    .section-head{
+    section{padding:46px 0}
+    .sectionHead{
       display:flex; justify-content:space-between; align-items:flex-end;
-      gap:18px;
+      gap:16px;
       margin-bottom:16px;
     }
-    .section-head h2{
-      margin:0;
-      font-size:22px;
-      letter-spacing:-.3px;
-    }
-    .section-head p{
-      margin:0;
-      color:var(--muted);
-      font-weight:750;
-      font-size:13.5px;
-    }
+    .sectionHead h2{margin:0; font-size:22px; letter-spacing:-.3px}
+    .sectionHead p{margin:0; color:var(--muted); font-weight:800; font-size:13.5px}
 
-    /* Feature cards - calmer */
-    .features{
+    /* Feature grid - only one grid; not crowded */
+    .grid{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
       gap:14px;
     }
-    @media (max-width:980px){ .features{grid-template-columns:1fr} }
+    @media (max-width:980px){ .grid{grid-template-columns:1fr} }
+
     .card{
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.04);
@@ -234,7 +182,7 @@
     }
     .icon{
       width:44px; height:44px;
-      border-radius: 16px;
+      border-radius:16px;
       border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.05);
       display:grid; place-items:center;
@@ -243,14 +191,14 @@
     .card h3{margin:12px 0 8px; font-size:16.5px}
     .card p{margin:0; color:var(--muted); line-height:1.65; font-size:14.2px}
 
-    /* Simple split block */
-    .split{
+    /* How it works - simple */
+    .two{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap:14px;
       align-items:stretch;
     }
-    @media (max-width:980px){ .split{grid-template-columns:1fr} }
+    @media (max-width:980px){ .two{grid-template-columns:1fr} }
     .panel{
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.04);
@@ -261,9 +209,9 @@
     .step{
       display:flex; gap:12px; align-items:flex-start;
       padding:12px;
-      border-radius: 18px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
+      border-radius: 18px;
     }
     .num{
       width:30px; height:30px; border-radius:12px;
@@ -276,7 +224,7 @@
     .step b{display:block; margin-bottom:3px}
     .step div{color:var(--muted2); font-size:13.5px; line-height:1.55}
 
-    /* CTA block - cleaner */
+    /* CTA block */
     .ctaBlock{
       border:1px solid rgba(255,255,255,.12);
       background:
@@ -294,7 +242,7 @@
     }
     .ctaBlock h3{margin:0 0 6px; font-size:18px}
     .ctaBlock p{margin:0; color:var(--muted); line-height:1.6; font-size:14.2px}
-    .ctaBlock .actions{display:flex; gap:10px; flex-wrap:wrap}
+    .ctaActions{display:flex; gap:10px; flex-wrap:wrap}
 
     footer{
       padding:26px 0 34px;
@@ -307,6 +255,7 @@
     }
     .foot a{color:rgba(238,242,255,.85)}
     .foot a:hover{text-decoration:underline}
+    .small{color:var(--muted2); font-size:13.5px; line-height:1.6}
   </style>
 </head>
 
@@ -330,9 +279,7 @@
       </nav>
 
       <div class="right">
-        <a class="btn small" href="mailto:support@connectsecurly.com" title="Email support">
-          Support
-        </a>
+        <a class="btn small" href="mailto:support@connectsecurly.com">Support</a>
         <a class="btn small primary" href="#get-started">Get ConnectSecurly</a>
       </div>
     </div>
@@ -341,63 +288,34 @@
   <main id="top">
     <!-- HERO -->
     <section class="hero">
-      <div class="wrap hero-grid">
+      <div class="wrap heroGrid">
         <div>
-          <span class="pill"><span class="dot"></span> Secure VPN • Fast • Private</span>
-          <h1>Secure browsing,<br/>without the complexity.</h1>
-          <p class="sub">
-            ConnectSecurly protects your internet connection with strong encryption and a clean, easy login.
-            Connect in seconds — on public Wi-Fi, at work, or at home.
+          <span class="pill"><span class="dot"></span> Secure VPN • Anti-Phishing • Encrypted DNS</span>
+
+          <h1>Security that feels effortless.</h1>
+
+          <p class="lead">
+            ConnectSecurly protects your connection with strong encryption, blocks phishing attempts,
+            and helps filter known malicious domains. Choose from multiple locations and connect in seconds.
           </p>
 
           <div class="cta">
-            <a class="btn primary" href="#get-started">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M13 2L4 14h7l-1 8 10-14h-7l0-6z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
-              </svg>
-              Start Secure Connection
-            </a>
-            <a class="btn" href="mailto:support@connectsecurly.com">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M4 6h16v12H4V6z" stroke="white" stroke-width="1.8"/>
-                <path d="M4 8l8 6 8-6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              Contact Support
-            </a>
+            <a class="btn primary" href="#get-started">Start secure connection</a>
+            <a class="btn" href="mailto:support@connectsecurly.com">Contact support</a>
           </div>
 
-          <div class="minirow" aria-label="Key highlights">
-            <span class="mini">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M12 2.5l7 3.2v6.6c0 5.1-3.1 8.6-7 9.8-3.9-1.2-7-4.7-7-9.8V5.7L12 2.5z" stroke="white" stroke-width="1.8"/>
-              </svg>
-              Strong encryption
-            </span>
-            <span class="mini">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M4 12h16" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
-                <path d="M12 4v16" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
-              </svg>
-              One-tap connect
-            </span>
-            <span class="mini">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M10 14a4 4 0 118 0v3H10v-3z" stroke="white" stroke-width="1.8"/>
-                <path d="M12 10V8a4 4 0 118 0v2" stroke="white" stroke-width="1.8"/>
-              </svg>
-              Easy to login
-            </span>
-          </div>
+          <p class="small" style="margin-top:14px;">
+            Streaming note: Availability may vary by region and service updates. We’re optimized for smooth streaming experiences.
+          </p>
         </div>
 
-        <!-- Clean visual -->
+        <!-- Clean encryption visual -->
         <div class="visual" aria-label="Encryption visual">
-          <header>
-            <span>Encryption</span>
-            <span>Secure tunnel</span>
-          </header>
-          <div class="body">
-            <!-- calmer, minimal svg -->
+          <div class="visualHead">
+            <span>Encrypted tunnel</span>
+            <span>Secure DNS (optional)</span>
+          </div>
+          <div class="visualBody">
             <svg viewBox="0 0 960 420" role="img" style="width:100%;height:auto;display:block;border-radius:20px;">
               <defs>
                 <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
@@ -423,7 +341,6 @@
               <path d="M520 170 C 650 230, 720 280, 830 340"
                     fill="none" stroke="rgba(255,255,255,.14)" stroke-width="3"/>
 
-              <!-- lock -->
               <g filter="url(#glow)">
                 <rect x="390" y="150" width="180" height="170" rx="28"
                       fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.18)" stroke-width="2"/>
@@ -435,132 +352,151 @@
                 <path d="M480 248v26" stroke="rgba(255,255,255,.85)" stroke-width="6" stroke-linecap="round"/>
               </g>
 
-              <!-- labels -->
-              <g font-family="ui-sans-serif, system-ui" font-weight="800" fill="rgba(238,242,255,.9)">
+              <g font-family="ui-sans-serif, system-ui" font-weight="900" fill="rgba(238,242,255,.9)">
                 <rect x="70" y="50" width="250" height="44" rx="18"
                       fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.14)"/>
-                <text x="92" y="79" font-size="16">AES-grade Encryption</text>
+                <text x="92" y="79" font-size="16">Strong Encryption</text>
 
                 <rect x="640" y="50" width="260" height="44" rx="18"
                       fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.14)"/>
-                <text x="662" y="79" font-size="16">Secure Tunnel Active</text>
+                <text x="662" y="79" font-size="16">Threat Protection</text>
               </g>
             </svg>
-
-            <div class="cardline">
-              <div class="vcard">
-                <b>Simple sign-in</b>
-                <span>Clean login flow designed for fast access and fewer steps.</span>
-              </div>
-              <div class="vcard">
-                <b>Protected anywhere</b>
-                <span>Stay secure on public Wi-Fi with an encrypted connection.</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FEATURES -->
+    <!-- FEATURES (single grid only) -->
     <section id="features">
       <div class="wrap">
-        <div class="section-head">
-          <h2>Built for modern security</h2>
-          <p>Simple, fast, and reliable</p>
+        <div class="sectionHead">
+          <h2>Everything you need to stay secure</h2>
+          <p>Clean. Fast. Reliable.</p>
         </div>
 
-        <div class="features">
+        <div class="grid">
           <div class="card">
             <div class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
                 <path d="M12 2.5l7 3.2v6.6c0 5.1-3.1 8.6-7 9.8-3.9-1.2-7-4.7-7-9.8V5.7L12 2.5z" stroke="white" stroke-width="1.8"/>
               </svg>
             </div>
-            <h3>Encrypted tunnel</h3>
-            <p>Your traffic travels through a secure tunnel to protect data on any network.</p>
+            <h3>Encrypted VPN tunnel</h3>
+            <p>Protect your traffic on public Wi-Fi and untrusted networks with a secure tunnel.</p>
           </div>
 
           <div class="card">
             <div class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
                 <path d="M4 12h16" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
-                <path d="M8 7h8" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
-                <path d="M7 17h10" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M12 4v16" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M7 7l10 10" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
               </svg>
             </div>
-            <h3>Fast connection</h3>
-            <p>Designed for smooth browsing and calls without complicated settings.</p>
+            <h3>Anti-phishing protection</h3>
+            <p>Helps reduce the risk of phishing by blocking known malicious links and domains.</p>
           </div>
 
           <div class="card">
             <div class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
-                <path d="M12 12a5 5 0 100-10 5 5 0 000 10z" stroke="white" stroke-width="1.8"/>
-                <path d="M4 22c1.7-4 5-6 8-6s6.3 2 8 6" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M12 3c4.5 0 8 3.4 8 8 0 5.8-6.2 9.5-8 10.5C10.2 20.5 4 16.8 4 11c0-4.6 3.5-8 8-8z" stroke="white" stroke-width="1.8"/>
+                <path d="M12 8v6" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M12 17h.01" stroke="white" stroke-width="3" stroke-linecap="round"/>
               </svg>
             </div>
-            <h3>Easy to login</h3>
-            <p>Quick sign-in and one-tap connect—simple for teams and personal use.</p>
+            <h3>Malware & DNS filtering</h3>
+            <p>Blocks many known malicious domains at the DNS layer to help keep you safer online.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 7h16M4 12h16M4 17h16" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M7 7c0 5 0 5 0 10M17 7c0 5 0 5 0 10" stroke="white" stroke-width="1.8" stroke-linecap="round" opacity=".7"/>
+              </svg>
+            </div>
+            <h3>Multiple locations</h3>
+            <p>Choose from multiple regions to get the best speed, privacy, and browsing experience.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M21 8l-9 5-9-5V6l9 5 9-5v2z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M3 10v8l9 5 9-5v-8" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Encrypted DNS (optional)</h3>
+            <p>Encrypt DNS queries to reduce tracking and improve privacy while browsing.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 7h16v10H4V7z" stroke="white" stroke-width="1.8"/>
+                <path d="M8 17l-2 4" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M16 17l2 4" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M9 12l2 2 4-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Streaming ready</h3>
+            <p>Optimized for smooth streaming and performance (Netflix & Prime Video support may vary by region).</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- HOW IT WORKS + SUPPORT -->
+    <!-- HOW + SUPPORT -->
     <section id="how">
-      <div class="wrap split">
+      <div class="wrap two">
         <div class="panel">
-          <div class="section-head" style="margin-bottom:10px;">
+          <div class="sectionHead" style="margin-bottom:10px;">
             <h2>How it works</h2>
-            <p>3 steps to secure</p>
+            <p>3 quick steps</p>
           </div>
 
           <div class="steps">
             <div class="step">
               <div class="num">1</div>
               <div>
-                <b>Sign in</b>
-                <div>Log in with your email and password (or SSO if enabled).</div>
+                <b>Login</b>
+                <div>Sign in with your email and password (or SSO if enabled).</div>
               </div>
             </div>
             <div class="step">
               <div class="num">2</div>
               <div>
-                <b>Select a server</b>
-                <div>Choose the nearest location for speed or a specific region.</div>
+                <b>Select a location</b>
+                <div>Pick the nearest server for speed or choose a region.</div>
               </div>
             </div>
             <div class="step">
               <div class="num">3</div>
               <div>
-                <b>Tap Connect</b>
-                <div>Your encrypted tunnel activates instantly.</div>
+                <b>Connect</b>
+                <div>Your secure tunnel activates in seconds.</div>
               </div>
             </div>
           </div>
         </div>
 
         <div class="panel" id="support">
-          <div class="section-head" style="margin-bottom:10px;">
-            <h2>Need help?</h2>
-            <p>We’re here for you</p>
+          <div class="sectionHead" style="margin-bottom:10px;">
+            <h2>Support</h2>
+            <p>Contact us</p>
           </div>
 
-          <p style="margin:0;color:var(--muted);line-height:1.7;">
-            Contact our support team any time. We can help with setup, login issues, and connection troubleshooting.
+          <p class="small" style="margin:0 0 12px;">
+            For setup help, login issues, or troubleshooting, email our team:
           </p>
 
-          <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
-            <a class="btn primary" href="mailto:support@connectsecurly.com">
-              Email support@connectsecurly.com
-            </a>
-            <span class="pill" title="Response time">Typical response: same day</span>
-          </div>
+          <a class="btn primary" href="mailto:support@connectsecurly.com">support@connectsecurly.com</a>
 
-          <div style="margin-top:14px;color:var(--muted2);font-size:13.5px;line-height:1.6;">
-            Tip: If you contact support, include your device type and what network you’re on (home / office / public Wi-Fi).
-          </div>
+          <p class="small" style="margin-top:14px;">
+            Tip: Include your device type and network (home/office/public Wi-Fi) for faster support.
+          </p>
         </div>
       </div>
     </section>
@@ -570,13 +506,11 @@
       <div class="wrap">
         <div class="ctaBlock">
           <div>
-            <h3>Get started with ConnectSecurly</h3>
-            <p>Secure your connection in seconds with strong encryption and a simple login.</p>
+            <h3>Ready to connect securely?</h3>
+            <p>Start using ConnectSecurly with secure encryption, anti-phishing, and multi-location support.</p>
           </div>
-          <div class="actions">
-            <a class="btn primary" href="mailto:support@connectsecurly.com?subject=ConnectSecurly%20Access%20Request">
-              Request access
-            </a>
+          <div class="ctaActions">
+            <a class="btn primary" href="mailto:support@connectsecurly.com?subject=ConnectSecurly%20Access%20Request">Request access</a>
             <a class="btn" href="#top">Back to top</a>
           </div>
         </div>
@@ -595,9 +529,8 @@
         <span>ConnectSecurly</span>
       </div>
 
-      <div style="color:var(--muted2);">
-        © <span id="year"></span> connectsecurly.com •
-        <a href="mailto:support@connectsecurly.com">support@connectsecurly.com</a>
+      <div class="small">
+        © <span id="year"></span> connectsecurly.com • <a href="mailto:support@connectsecurly.com">support@connectsecurly.com</a>
       </div>
     </div>
   </footer>
