@@ -4,25 +4,26 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ConnectSecurly — The modern shield for the Internet</title>
-  <meta name="description" content="ConnectSecurly is a VPN with DNS-level protection and filtering. Defense+ Mode helps block phishing, malware domains, ads, and trackers—across devices and networks." />
+  <meta name="description" content="ConnectSecurly is a VPN with DNS-level protection. Enable Defense+ Mode to help block phishing, malicious domains, ads, and trackers — across devices and networks." />
 
   <style>
     :root{
-      --bg:#060913;
-      --bg2:#0b1224;
-      --card:rgba(255,255,255,.06);
-      --card2:rgba(255,255,255,.04);
-      --line:rgba(255,255,255,.12);
-      --text:#eef2ff;
-      --muted:rgba(238,242,255,.72);
-      --muted2:rgba(238,242,255,.55);
-      --accent:#6d5cff;
-      --accent2:#22c3ff;
-      --good:#31e6b6;
-      --warn:#ffd66d;
-      --shadow: 0 24px 70px rgba(0,0,0,.45);
-      --r18:18px;
-      --r24:24px;
+      --bg:#f6f8ff;
+      --bg2:#ffffff;
+      --card:#ffffff;
+      --line:rgba(15,23,42,.10);
+      --text:#0f172a;
+      --muted:rgba(15,23,42,.72);
+      --muted2:rgba(15,23,42,.55);
+
+      --blue:#1e62ff;
+      --blue2:#00b3ff;
+      --good:#12b981;
+
+      --shadow: 0 18px 50px rgba(2, 8, 23, .12);
+      --shadow2: 0 10px 24px rgba(2, 8, 23, .10);
+      --r16:16px;
+      --r20:20px;
       --max:1120px;
       --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
     }
@@ -34,24 +35,24 @@
       font-family:var(--font);
       color:var(--text);
       background:
-        radial-gradient(900px 520px at 18% -10%, rgba(109,92,255,.32), transparent 60%),
-        radial-gradient(900px 520px at 86% -6%, rgba(34,195,255,.22), transparent 60%),
-        radial-gradient(800px 520px at 70% 110%, rgba(49,230,182,.10), transparent 55%),
-        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+        radial-gradient(900px 540px at 12% -10%, rgba(30,98,255,.20), transparent 55%),
+        radial-gradient(900px 540px at 90% -10%, rgba(0,179,255,.14), transparent 55%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 40%, var(--bg) 100%);
       overflow-x:hidden;
     }
     a{color:inherit; text-decoration:none}
+
     .wrap{max-width:var(--max); margin:0 auto; padding:0 22px}
 
-    /* --- Accessibility: reduce motion --- */
+    /* motion safety */
     @media (prefers-reduced-motion: reduce){
       *{animation:none !important; transition:none !important; scroll-behavior:auto !important}
     }
 
-    /* --- Top bar --- */
+    /* Top bar */
     .topbar{
-      position:sticky; top:0; z-index:40;
-      background: rgba(6,9,19,.55);
+      position:sticky; top:0; z-index:30;
+      background: rgba(246,248,255,.72);
       backdrop-filter: blur(14px);
       border-bottom:1px solid var(--line);
     }
@@ -61,14 +62,13 @@
     }
     .brand{display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:.2px}
     .logo{
-      width:34px; height:34px; border-radius:12px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      border:1px solid rgba(255,255,255,.18);
-      box-shadow: 0 18px 45px rgba(109,92,255,.22);
+      width:36px; height:36px; border-radius:12px;
+      background: linear-gradient(135deg, var(--blue), var(--blue2));
+      box-shadow: 0 12px 30px rgba(30,98,255,.20);
       display:grid; place-items:center;
       flex:0 0 auto;
     }
-    .logo svg{width:18px; height:18px; opacity:.95}
+    .logo svg{width:18px; height:18px; opacity:1}
     .links{
       display:flex; gap:18px; align-items:center;
       color:var(--muted);
@@ -76,7 +76,7 @@
       font-size:14px;
     }
     .links a{padding:8px 10px; border-radius:12px}
-    .links a:hover{background:rgba(255,255,255,.06); color:var(--text)}
+    .links a:hover{background:rgba(30,98,255,.06); color:var(--text)}
     .right{display:flex; gap:10px; align-items:center}
 
     .btn{
@@ -84,32 +84,34 @@
       padding:12px 16px;
       border-radius:999px;
       font-weight:900;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      transition: transform .15s ease, background .15s ease, filter .15s ease;
+      border:1px solid rgba(15,23,42,.10);
+      background: rgba(255,255,255,.9);
+      box-shadow: 0 8px 18px rgba(2,8,23,.06);
+      transition: transform .15s ease, box-shadow .15s ease;
       white-space:nowrap;
       cursor:pointer;
       user-select:none;
     }
-    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.10)}
+    .btn:hover{transform: translateY(-1px); box-shadow: 0 12px 22px rgba(2,8,23,.10)}
     .btn.primary{
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      border:1px solid rgba(255,255,255,.18);
-      box-shadow: 0 20px 55px rgba(109,92,255,.28);
+      color:white;
+      border:0;
+      background: linear-gradient(135deg, var(--blue), var(--blue2));
+      box-shadow: 0 16px 34px rgba(30,98,255,.22);
     }
-    .btn.primary:hover{transform: translateY(-2px); filter:saturate(1.05)}
+    .btn.primary:hover{transform: translateY(-2px); box-shadow: 0 20px 44px rgba(30,98,255,.26)}
     .btn.small{padding:10px 14px; font-size:14px}
 
-    /* --- Hero --- */
-    .hero{padding:64px 0 26px}
+    /* Hero */
+    .hero{padding:60px 0 22px}
     .heroGrid{
       display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap:34px;
+      grid-template-columns: 1.05fr .95fr;
+      gap:30px;
       align-items:center;
     }
     @media (max-width: 980px){
-      .heroGrid{grid-template-columns:1fr; gap:18px}
+      .heroGrid{grid-template-columns:1fr; gap:16px}
       .links{display:none}
     }
 
@@ -117,22 +119,22 @@
       display:inline-flex; align-items:center; gap:8px;
       padding:8px 12px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.05);
-      color:var(--muted);
-      font-weight:850;
+      border:1px solid rgba(15,23,42,.08);
+      background: rgba(255,255,255,.85);
+      color:rgba(15,23,42,.75);
+      font-weight:900;
       font-size:13px;
     }
     .dot{
       width:9px; height:9px; border-radius:999px;
       background: var(--good);
-      box-shadow: 0 0 0 4px rgba(49,230,182,.14);
+      box-shadow: 0 0 0 4px rgba(18,185,129,.14);
     }
 
     h1{
       margin:14px 0 12px;
       font-size:54px;
-      line-height:1.04;
+      line-height:1.05;
       letter-spacing:-1px;
     }
     @media (max-width: 520px){ h1{font-size:40px} }
@@ -142,31 +144,31 @@
       color:var(--muted);
       font-size:16.5px;
       line-height:1.75;
-      max-width: 65ch;
+      max-width: 66ch;
     }
     .cta{margin-top:18px; display:flex; gap:12px; flex-wrap:wrap}
     .note{
-      margin-top:14px;
+      margin-top:12px;
       color:var(--muted2);
       font-size:13.5px;
       line-height:1.6;
     }
 
-    /* --- Clean visual --- */
+    /* Visual card */
     .visual{
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      border-radius: var(--r24);
+      background: rgba(255,255,255,.92);
+      border:1px solid rgba(15,23,42,.08);
+      border-radius: var(--r20);
       box-shadow: var(--shadow);
       overflow:hidden;
-      transform: translateY(8px);
       opacity:0;
+      transform: translateY(10px);
       animation: rise .55s ease forwards;
-      animation-delay:.18s;
+      animation-delay:.16s;
     }
     .visualHead{
       padding:14px 16px;
-      border-bottom:1px solid rgba(255,255,255,.10);
+      border-bottom:1px solid rgba(15,23,42,.08);
       display:flex; justify-content:space-between; align-items:center;
       color:var(--muted2);
       font-weight:900;
@@ -176,8 +178,8 @@
     }
     .visualBody{padding:16px}
 
-    /* --- Sections --- */
-    section{padding:48px 0}
+    /* Sections */
+    section{padding:44px 0}
     .sectionHead{
       display:flex; justify-content:space-between; align-items:flex-end;
       gap:16px;
@@ -186,7 +188,7 @@
     .sectionHead h2{margin:0; font-size:22px; letter-spacing:-.3px}
     .sectionHead p{margin:0; color:var(--muted); font-weight:800; font-size:13.5px}
 
-    /* --- Feature cards (Bitwarden-like) --- */
+    /* Feature grid (Nord-like tiles) */
     .grid{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
@@ -195,28 +197,28 @@
     @media (max-width: 980px){ .grid{grid-template-columns:1fr} }
 
     .card{
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      border-radius: var(--r24);
+      background: rgba(255,255,255,.92);
+      border:1px solid rgba(15,23,42,.08);
+      border-radius: var(--r20);
       padding:18px;
-      position:relative;
-      overflow:hidden;
-      transform: translateY(10px);
+      box-shadow: var(--shadow2);
       opacity:0;
+      transform: translateY(10px);
     }
     .card.reveal{animation: rise .55s ease forwards}
+
     .icon{
       width:46px; height:46px;
       border-radius:16px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.05);
+      border:1px solid rgba(15,23,42,.08);
+      background: linear-gradient(180deg, rgba(30,98,255,.10), rgba(0,179,255,.06));
       display:grid; place-items:center;
     }
-    .icon svg{width:20px; height:20px; opacity:.95}
+    .icon svg{width:20px; height:20px; opacity:1}
     .card h3{margin:12px 0 8px; font-size:16.5px}
     .card p{margin:0; color:var(--muted); line-height:1.65; font-size:14.2px}
 
-    /* --- Defense+ Mode Toggle --- */
+    /* Defense+ section */
     .modeWrap{
       display:grid;
       grid-template-columns: 1.05fr .95fr;
@@ -226,18 +228,20 @@
     @media (max-width: 980px){ .modeWrap{grid-template-columns:1fr} }
 
     .panel{
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      border-radius: var(--r24);
+      background: rgba(255,255,255,.92);
+      border:1px solid rgba(15,23,42,.08);
+      border-radius: var(--r20);
       padding:18px;
+      box-shadow: var(--shadow2);
     }
+
     .modeCard{
-      border:1px solid rgba(255,255,255,.12);
       background:
-        radial-gradient(700px 220px at 15% 10%, rgba(109,92,255,.20), transparent 55%),
-        radial-gradient(700px 220px at 90% 10%, rgba(34,195,255,.14), transparent 55%),
-        rgba(255,255,255,.03);
-      border-radius: var(--r24);
+        radial-gradient(900px 260px at 12% 10%, rgba(30,98,255,.12), transparent 60%),
+        radial-gradient(900px 260px at 92% 12%, rgba(0,179,255,.10), transparent 60%),
+        rgba(255,255,255,.92);
+      border:1px solid rgba(15,23,42,.08);
+      border-radius: var(--r20);
       padding:18px;
       box-shadow: var(--shadow);
     }
@@ -245,22 +249,20 @@
       display:flex; justify-content:space-between; align-items:center;
       gap:12px;
     }
-    .modeTitle{
-      display:flex; flex-direction:column; gap:4px;
-    }
+    .modeTitle{display:flex; flex-direction:column; gap:4px}
     .modeTitle b{font-size:16px}
     .modeTitle span{color:var(--muted); font-size:13.5px; line-height:1.5}
 
-    /* Toggle switch */
+    /* Toggle */
     .toggle{
       position:relative;
-      width:56px; height:34px;
+      width:58px; height:34px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.06);
+      border:1px solid rgba(15,23,42,.10);
+      background: rgba(15,23,42,.05);
       cursor:pointer;
       flex:0 0 auto;
-      transition: background .2s ease, border-color .2s ease, box-shadow .2s ease;
+      transition: background .2s ease, box-shadow .2s ease;
     }
     .toggle::after{
       content:"";
@@ -268,42 +270,40 @@
       width:26px; height:26px;
       border-radius:999px;
       transform: translateY(-50%);
-      background: rgba(255,255,255,.85);
+      background: #ffffff;
       transition: transform .22s ease;
-      box-shadow: 0 10px 25px rgba(0,0,0,.35);
+      box-shadow: 0 8px 16px rgba(2,8,23,.16);
     }
     .toggle.on{
-      background: linear-gradient(135deg, rgba(109,92,255,.95), rgba(34,195,255,.95));
-      border-color: rgba(255,255,255,.22);
-      box-shadow: 0 18px 45px rgba(109,92,255,.25);
+      background: linear-gradient(135deg, var(--blue), var(--blue2));
+      box-shadow: 0 16px 30px rgba(30,98,255,.20);
     }
-    .toggle.on::after{ transform: translate(22px, -50%); }
+    .toggle.on::after{ transform: translate(24px, -50%); }
 
-    .modeBody{
-      margin-top:14px;
-      display:grid;
-      gap:10px;
-    }
+    .modeBody{margin-top:14px; display:grid; gap:10px}
     .modeRow{
       display:flex; gap:10px; align-items:flex-start;
       padding:12px;
-      border-radius: 18px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
+      border-radius: 16px;
+      border:1px solid rgba(15,23,42,.08);
+      background: rgba(255,255,255,.80);
     }
     .badge{
       font-weight:900;
       font-size:12px;
       padding:6px 10px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.05);
-      color:rgba(238,242,255,.86);
+      border:1px solid rgba(15,23,42,.10);
+      background: rgba(15,23,42,.04);
+      color: rgba(15,23,42,.78);
       flex:0 0 auto;
       margin-top:2px;
     }
-    .badge.good{border-color:rgba(49,230,182,.35); color:rgba(49,230,182,.95)}
-    .badge.base{border-color:rgba(34,195,255,.30); color:rgba(34,195,255,.95)}
+    .badge.plus{
+      border-color: rgba(30,98,255,.18);
+      background: rgba(30,98,255,.08);
+      color: rgba(30,98,255,1);
+    }
     .modeRow b{display:block; margin-bottom:3px}
     .modeRow div{color:var(--muted2); font-size:13.5px; line-height:1.55}
 
@@ -314,7 +314,7 @@
       line-height:1.6;
     }
 
-    /* --- How it works / Support --- */
+    /* How + support */
     .two{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -327,16 +327,17 @@
     .step{
       display:flex; gap:12px; align-items:flex-start;
       padding:12px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      border-radius: 18px;
+      border:1px solid rgba(15,23,42,.08);
+      background: rgba(255,255,255,.80);
+      border-radius: 16px;
     }
     .num{
       width:30px; height:30px; border-radius:12px;
-      background: linear-gradient(135deg, rgba(109,92,255,.95), rgba(34,195,255,.95));
+      background: linear-gradient(135deg, var(--blue), var(--blue2));
       display:grid; place-items:center;
       font-weight:900;
-      box-shadow: 0 18px 45px rgba(109,92,255,.22);
+      color:white;
+      box-shadow: 0 14px 26px rgba(30,98,255,.22);
       flex:0 0 auto;
     }
     .step b{display:block; margin-bottom:3px}
@@ -344,12 +345,12 @@
 
     /* CTA block */
     .ctaBlock{
-      border:1px solid rgba(255,255,255,.12);
+      border:1px solid rgba(15,23,42,.08);
       background:
-        radial-gradient(800px 260px at 10% 10%, rgba(109,92,255,.20), transparent 60%),
-        radial-gradient(800px 260px at 90% 10%, rgba(34,195,255,.14), transparent 60%),
-        rgba(255,255,255,.03);
-      border-radius: var(--r24);
+        radial-gradient(900px 260px at 12% 10%, rgba(30,98,255,.12), transparent 60%),
+        radial-gradient(900px 260px at 92% 10%, rgba(0,179,255,.10), transparent 60%),
+        rgba(255,255,255,.92);
+      border-radius: var(--r20);
       padding:22px;
       display:flex;
       justify-content:space-between;
@@ -364,39 +365,27 @@
 
     footer{
       padding:26px 0 34px;
-      border-top:1px solid rgba(255,255,255,.10);
-      color:rgba(238,242,255,.78);
+      border-top:1px solid rgba(15,23,42,.08);
+      color:rgba(15,23,42,.72);
     }
     .foot{
       display:flex; justify-content:space-between; align-items:center;
       gap:14px; flex-wrap:wrap;
     }
     .small{color:var(--muted2); font-size:13.5px; line-height:1.6}
-    .foot a{color:rgba(238,242,255,.86)}
+    .foot a{color: rgba(30,98,255,1)}
     .foot a:hover{text-decoration:underline}
 
-    /* --- Fun but minimal load animations --- */
     .fadeUp{
       opacity:0;
       transform: translateY(10px);
       animation: rise .55s ease forwards;
     }
-    .delay1{animation-delay:.06s}
-    .delay2{animation-delay:.14s}
-    .delay3{animation-delay:.22s}
+    .d1{animation-delay:.06s}
+    .d2{animation-delay:.14s}
+    .d3{animation-delay:.22s}
 
-    @keyframes rise{
-      to{opacity:1; transform: translateY(0)}
-    }
-
-    /* Subtle floating for hero icon only */
-    .floaty{
-      animation: floaty 4.2s ease-in-out infinite;
-    }
-    @keyframes floaty{
-      0%,100%{transform: translateY(0)}
-      50%{transform: translateY(-6px)}
-    }
+    @keyframes rise{to{opacity:1; transform: translateY(0)}}
   </style>
 </head>
 
@@ -404,9 +393,9 @@
   <header class="topbar">
     <div class="wrap nav">
       <a class="brand" href="#top">
-        <span class="logo floaty" aria-hidden="true">
+        <span class="logo" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none">
-            <path d="M12 2.5l7 3.2v6.6c0 5.1-3.1 8.6-7 9.8-3.9-1.2-7-4.7-7-9.8V5.7L12 2.5z" stroke="white" stroke-width="1.8" />
+            <path d="M12 2.5l7 3.2v6.6c0 5.1-3.1 8.6-7 9.8-3.9-1.2-7-4.7-7-9.8V5.7L12 2.5z" stroke="white" stroke-width="1.8"/>
             <path d="M8.3 12.2l2.2 2.2 5.2-5.2" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </span>
@@ -432,39 +421,37 @@
     <section class="hero">
       <div class="wrap heroGrid">
         <div>
-          <span class="pill fadeUp delay1"><span class="dot"></span> VPN + DNS Protection • Defense+ Mode</span>
+          <span class="pill fadeUp d1"><span class="dot"></span> VPN + DNS Protection • Defense+ Mode</span>
+          <h1 class="fadeUp d2">The modern shield for the Internet.</h1>
 
-          <h1 class="fadeUp delay2">The modern shield for the Internet.</h1>
-
-          <p class="lead fadeUp delay3">
-            ConnectSecurly combines a secure VPN with DNS-level protection to help reduce security threats.
-            Turn on <b>Defense+ Mode</b> to help block phishing and malicious domains, filter ads and trackers,
-            and support safer browsing for families — across devices and networks.
+          <p class="lead fadeUp d3">
+            ConnectSecurly combines a secure VPN with DNS-level protection to help reduce online threats.
+            Turn on <b>Defense+ Mode</b> to automatically help block phishing and malicious domains, and filter ads and trackers — across devices and networks.
           </p>
 
-          <div class="cta fadeUp delay3">
-            <a class="btn primary" href="#get-started">Start secure connection</a>
+          <div class="cta fadeUp d3">
+            <a class="btn primary" href="#get-started">Get started</a>
             <a class="btn" href="mailto:support@connectsecurly.com">Contact support</a>
           </div>
 
-          <p class="note fadeUp delay3">
-            Streaming note: performance is optimized for streaming, but availability may vary by region and service updates.
+          <p class="note fadeUp d3">
+            Streaming note: optimized for smooth streaming, but availability may vary by region and service updates.
           </p>
         </div>
 
-        <div class="visual" aria-label="Encryption visual">
+        <div class="visual" aria-label="Protection preview">
           <div class="visualHead">
-            <span>Encrypted tunnel</span>
-            <span>Threat filtering</span>
+            <span>Encryption</span>
+            <span>Defense+ filtering</span>
           </div>
           <div class="visualBody">
-            <svg viewBox="0 0 960 420" role="img" style="width:100%;height:auto;display:block;border-radius:20px;">
+            <svg viewBox="0 0 900 360" role="img" style="width:100%;height:auto;display:block;border-radius:16px;">
               <defs>
                 <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="rgba(109,92,255,1)"/>
-                  <stop offset="1" stop-color="rgba(34,195,255,1)"/>
+                  <stop offset="0" stop-color="#1e62ff"/>
+                  <stop offset="1" stop-color="#00b3ff"/>
                 </linearGradient>
-                <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+                <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
                   <feGaussianBlur stdDeviation="10" result="b"/>
                   <feMerge>
                     <feMergeNode in="b"/>
@@ -473,39 +460,37 @@
                 </filter>
               </defs>
 
-              <rect width="960" height="420" fill="rgba(255,255,255,.02)"/>
-              <circle cx="160" cy="120" r="130" fill="rgba(109,92,255,.18)"/>
-              <circle cx="820" cy="110" r="160" fill="rgba(34,195,255,.14)"/>
-              <circle cx="790" cy="340" r="170" fill="rgba(49,230,182,.10)"/>
+              <rect width="900" height="360" rx="18" fill="rgba(30,98,255,.06)"/>
+              <circle cx="140" cy="110" r="130" fill="rgba(30,98,255,.10)"/>
+              <circle cx="780" cy="90" r="150" fill="rgba(0,179,255,.10)"/>
 
-              <path d="M190 290 C 320 200, 410 210, 520 170 C 650 120, 730 140, 840 110"
-                    fill="none" stroke="rgba(255,255,255,.18)" stroke-width="3"/>
-              <path d="M520 170 C 650 230, 720 280, 830 340"
-                    fill="none" stroke="rgba(255,255,255,.14)" stroke-width="3"/>
+              <path d="M150 270 C 300 190, 420 210, 520 160 C 650 110, 720 120, 820 90"
+                    fill="none" stroke="rgba(15,23,42,.18)" stroke-width="3"/>
+              <path d="M520 160 C 640 230, 720 260, 820 300"
+                    fill="none" stroke="rgba(15,23,42,.12)" stroke-width="3"/>
 
-              <g filter="url(#glow)">
-                <rect x="390" y="150" width="180" height="170" rx="28"
-                      fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.18)" stroke-width="2"/>
-                <path d="M430 155v-18c0-36 26-62 50-62s50 26 50 62v18"
+              <g filter="url(#soft)">
+                <rect x="360" y="120" width="180" height="170" rx="26"
+                      fill="rgba(255,255,255,.88)" stroke="rgba(15,23,42,.10)" stroke-width="2"/>
+                <path d="M395 128v-14c0-36 26-62 55-62s55 26 55 62v14"
                       fill="none" stroke="url(#g)" stroke-width="10" stroke-linecap="round"/>
-                <rect x="435" y="185" width="90" height="105" rx="18"
-                      fill="rgba(6,9,19,.35)" stroke="rgba(255,255,255,.16)" stroke-width="2"/>
-                <circle cx="480" cy="235" r="12" fill="url(#g)"/>
-                <path d="M480 248v26" stroke="rgba(255,255,255,.85)" stroke-width="6" stroke-linecap="round"/>
+                <rect x="405" y="160" width="90" height="105" rx="16"
+                      fill="rgba(15,23,42,.04)" stroke="rgba(15,23,42,.10)" stroke-width="2"/>
+                <circle cx="450" cy="210" r="12" fill="url(#g)"/>
+                <path d="M450 223v28" stroke="rgba(15,23,42,.70)" stroke-width="6" stroke-linecap="round"/>
               </g>
 
-              <g font-family="ui-sans-serif, system-ui" font-weight="900" fill="rgba(238,242,255,.9)">
-                <rect x="70" y="50" width="250" height="44" rx="18"
-                      fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.14)"/>
-                <text x="92" y="79" font-size="16">Strong encryption</text>
+              <g font-family="ui-sans-serif, system-ui" font-weight="900" fill="rgba(15,23,42,.78)">
+                <rect x="70" y="40" width="240" height="42" rx="16" fill="rgba(255,255,255,.82)" stroke="rgba(15,23,42,.08)"/>
+                <text x="92" y="67" font-size="15">Encrypted tunnel</text>
 
-                <rect x="640" y="50" width="260" height="44" rx="18"
-                      fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.14)"/>
-                <text x="662" y="79" font-size="16">Defense+ enabled</text>
+                <rect x="590" y="40" width="260" height="42" rx="16" fill="rgba(255,255,255,.82)" stroke="rgba(15,23,42,.08)"/>
+                <text x="612" y="67" font-size="15">Defense+ on</text>
               </g>
             </svg>
           </div>
         </div>
+
       </div>
     </section>
 
@@ -521,7 +506,7 @@
           <article class="card">
             <div class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
-                <path d="M12 2.5l7 3.2v6.6c0 5.1-3.1 8.6-7 9.8-3.9-1.2-7-4.7-7-9.8V5.7L12 2.5z" stroke="white" stroke-width="1.8"/>
+                <path d="M12 2.5l7 3.2v6.6c0 5.1-3.1 8.6-7 9.8-3.9-1.2-7-4.7-7-9.8V5.7L12 2.5z" stroke="#1e62ff" stroke-width="1.8"/>
               </svg>
             </div>
             <h3>Encrypted VPN tunnel</h3>
@@ -531,9 +516,9 @@
           <article class="card">
             <div class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
-                <path d="M12 3c4.5 0 8 3.4 8 8 0 5.8-6.2 9.5-8 10.5C10.2 20.5 4 16.8 4 11c0-4.6 3.5-8 8-8z" stroke="white" stroke-width="1.8"/>
-                <path d="M12 8v6" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
-                <path d="M12 17h.01" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                <path d="M12 3c4.5 0 8 3.4 8 8 0 5.8-6.2 9.5-8 10.5C10.2 20.5 4 16.8 4 11c0-4.6 3.5-8 8-8z" stroke="#1e62ff" stroke-width="1.8"/>
+                <path d="M12 8v6" stroke="#1e62ff" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M12 17h.01" stroke="#1e62ff" stroke-width="3" stroke-linecap="round"/>
               </svg>
             </div>
             <h3>Anti-phishing defense</h3>
@@ -543,8 +528,8 @@
           <article class="card">
             <div class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
-                <path d="M4 12h16" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
-                <path d="M7 7l10 10" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M4 12h16" stroke="#1e62ff" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M7 7l10 10" stroke="#1e62ff" stroke-width="1.8" stroke-linecap="round"/>
               </svg>
             </div>
             <h3>Shield against hackers</h3>
@@ -554,7 +539,7 @@
           <article class="card">
             <div class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
-                <path d="M4 7h16M4 12h16M4 17h16" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M4 7h16M4 12h16M4 17h16" stroke="#1e62ff" stroke-width="1.8" stroke-linecap="round"/>
               </svg>
             </div>
             <h3>Ads & tracker filtering</h3>
@@ -564,8 +549,8 @@
           <article class="card">
             <div class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
-                <path d="M21 8l-9 5-9-5V6l9 5 9-5v2z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
-                <path d="M3 10v8l9 5 9-5v-8" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M21 8l-9 5-9-5V6l9 5 9-5v2z" stroke="#1e62ff" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M3 10v8l9 5 9-5v-8" stroke="#1e62ff" stroke-width="1.8" stroke-linejoin="round"/>
               </svg>
             </div>
             <h3>Encrypted DNS (optional)</h3>
@@ -575,8 +560,8 @@
           <article class="card">
             <div class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
-                <path d="M4 7h16v10H4V7z" stroke="white" stroke-width="1.8"/>
-                <path d="M9 12l2 2 4-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4 7h16v10H4V7z" stroke="#1e62ff" stroke-width="1.8"/>
+                <path d="M9 12l2 2 4-5" stroke="#1e62ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
             <h3>Multiple locations + streaming</h3>
@@ -598,16 +583,14 @@
           <div class="modeCard">
             <div class="modeTop">
               <div class="modeTitle">
-                <b>Enable Defense+ Mode</b>
-                <span>Toggle to preview what changes when Defense+ is on.</span>
+                <b>Turn Defense+ on</b>
+                <span>Enable once — filtering is applied automatically while you browse.</span>
               </div>
 
               <div class="toggle" id="toggle" role="switch" aria-checked="false" tabindex="0" aria-label="Toggle Defense Plus Mode"></div>
             </div>
 
-            <div class="modeBody" id="modeBody">
-              <!-- Filled by JS -->
-            </div>
+            <div class="modeBody" id="modeBody"></div>
 
             <div class="modeFooter" id="modeFooter">
               Defense+ Mode helps reduce exposure to threats. No security product can guarantee complete protection.
@@ -616,48 +599,22 @@
 
           <div class="panel">
             <div class="sectionHead" style="margin-bottom:10px;">
-              <h2>Family & kids protection</h2>
-              <p>Legal-safe wording</p>
+              <h2>What changes when it’s on?</h2>
+              <p>Simple explanation</p>
             </div>
 
-            <p class="small" style="margin:0;">
-              Defense+ Mode can help provide a safer browsing experience for families by blocking many known malicious domains
-              and optionally filtering categories of content. It’s designed to support supervision across devices and networks.
-            </p>
-
-            <div class="steps" style="margin-top:14px;">
-              <div class="step">
-                <div class="num">1</div>
-                <div>
-                  <b>Turn on Defense+</b>
-                  <div>Enable protection to block known phishing and malicious domains.</div>
-                </div>
-              </div>
-              <div class="step">
-                <div class="num">2</div>
-                <div>
-                  <b>Choose filters</b>
-                  <div>Select ad/tracker filtering and optional content categories for families.</div>
-                </div>
-              </div>
-              <div class="step">
-                <div class="num">3</div>
-                <div>
-                  <b>Apply everywhere</b>
-                  <div>Works across home Wi-Fi, public networks, and mobile connections.</div>
-                </div>
-              </div>
+            <div class="small">
+              Defense+ adds DNS-level filtering on top of your encrypted VPN tunnel. It can help block many known malicious domains,
+              reduce tracking from ads, and improve browsing hygiene across networks.
+              <br/><br/>
+              Need help turning it on? Email <a href="mailto:support@connectsecurly.com">support@connectsecurly.com</a>.
             </div>
-
-            <p class="small" style="margin-top:12px;">
-              For help choosing the right settings, contact <a href="mailto:support@connectsecurly.com">support@connectsecurly.com</a>.
-            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- HOW IT WORKS + SUPPORT -->
+    <!-- HOW + SUPPORT -->
     <section id="how">
       <div class="wrap two">
         <div class="panel">
@@ -716,7 +673,7 @@
         <div class="ctaBlock">
           <div>
             <h3>Ready to connect securely?</h3>
-            <p>Start using ConnectSecurly with strong encryption, Defense+ Mode, and multi-location support.</p>
+            <p>Start using ConnectSecurly with strong encryption, Defense+ Mode, and multiple locations.</p>
           </div>
           <div class="ctaActions">
             <a class="btn primary" href="mailto:support@connectsecurly.com?subject=ConnectSecurly%20Access%20Request">Request access</a>
@@ -732,7 +689,7 @@
       <div class="brand">
         <span class="logo" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none">
-            <path d="M12 2.5l7 3.2v6.6c0 5.1-3.1 8.6-7 9.8-3.9-1.2-7-4.7-7-9.8V5.7L12 2.5z" stroke="white" stroke-width="1.8" />
+            <path d="M12 2.5l7 3.2v6.6c0 5.1-3.1 8.6-7 9.8-3.9-1.2-7-4.7-7-9.8V5.7L12 2.5z" stroke="white" stroke-width="1.8"/>
           </svg>
         </span>
         <span>ConnectSecurly</span>
@@ -748,15 +705,15 @@
     // Year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Reveal feature cards on scroll (subtle)
+    // Reveal cards on scroll (subtle)
     const cards = Array.from(document.querySelectorAll('.card'));
     const reveal = () => {
       const vh = window.innerHeight || 800;
       cards.forEach((c, i) => {
         const r = c.getBoundingClientRect();
-        if (r.top < vh - 60 && !c.classList.contains('reveal')) {
+        if (r.top < vh - 80 && !c.classList.contains('reveal')) {
           c.classList.add('reveal');
-          c.style.animationDelay = `${Math.min(i * 0.06, 0.3)}s`;
+          c.style.animationDelay = `${Math.min(i * 0.06, 0.30)}s`;
         }
       });
     };
@@ -769,45 +726,15 @@
     const modeFooter = document.getElementById('modeFooter');
 
     const baseRows = [
-      {
-        badge: 'BASE',
-        cls: 'base',
-        title: 'VPN protection',
-        desc: 'Encrypted tunnel to help protect traffic on untrusted networks.'
-      },
-      {
-        badge: 'BASE',
-        cls: 'base',
-        title: 'Basic DNS routing',
-        desc: 'Standard DNS behavior depending on your settings and device.'
-      }
+      { badge: 'BASE', cls: '', title: 'VPN encryption', desc: 'Encrypted tunnel to help protect traffic on untrusted networks.' },
+      { badge: 'BASE', cls: '', title: 'Standard browsing', desc: 'Connect normally with encrypted traffic while the VPN is on.' },
     ];
 
     const plusRows = [
-      {
-        badge: 'DEFENSE+',
-        cls: 'good',
-        title: 'Threat protection',
-        desc: 'Helps block many known phishing and malicious domains at the DNS layer.'
-      },
-      {
-        badge: 'DEFENSE+',
-        cls: 'good',
-        title: 'Ads & trackers',
-        desc: 'Helps reduce tracking and ads across websites and many apps.'
-      },
-      {
-        badge: 'DEFENSE+',
-        cls: 'good',
-        title: 'Family & kids filters (optional)',
-        desc: 'Supports supervised browsing by filtering selected content categories.'
-      },
-      {
-        badge: 'DEFENSE+',
-        cls: 'good',
-        title: 'Encrypted DNS (optional)',
-        desc: 'Encrypts DNS lookups to improve privacy and reduce certain tracking.'
-      }
+      { badge: 'DEFENSE+', cls: 'plus', title: 'Anti-phishing & malicious domains', desc: 'Helps block many known phishing and malicious domains at the DNS layer.' },
+      { badge: 'DEFENSE+', cls: 'plus', title: 'Ads & trackers', desc: 'Helps reduce tracking and intrusive ads across websites and many apps.' },
+      { badge: 'DEFENSE+', cls: 'plus', title: 'Malware/DNS filtering', desc: 'Helps filter known risky domains to reduce exposure to common threats.' },
+      { badge: 'DEFENSE+', cls: 'plus', title: 'Encrypted DNS (optional)', desc: 'Encrypts DNS lookups to improve privacy and reduce certain tracking.' }
     ];
 
     function renderRows(isOn){
@@ -827,15 +754,15 @@
         : "Base mode provides VPN encryption. Turn on Defense+ Mode to add DNS-level filtering and threat protection.";
     }
 
-    let on = false;
-    renderRows(on);
-
+    let on = true; // start ON for better demo feel
     function setToggle(state){
       on = state;
       toggle.classList.toggle('on', on);
       toggle.setAttribute('aria-checked', on ? 'true' : 'false');
       renderRows(on);
     }
+
+    setToggle(on);
 
     toggle.addEventListener('click', () => setToggle(!on));
     toggle.addEventListener('keydown', (e) => {
