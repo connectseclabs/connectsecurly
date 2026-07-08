@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ConnectSecurly — The modern shield for the Internet</title>
-  <meta name="description" content="ConnectSecurly is a VPN with DNS-level protection. Enable Defense+ Mode to help block phishing, malicious domains, ads, and trackers — across devices and networks." />
+  <title>ConnectSecurly — VPN, DNS Protection & AI Scam Shield</title>
+  <meta name="description" content="Protect your browsing, block phishing domains, and detect suspicious WhatsApp messages, SMS, QR codes, UPI IDs, phone numbers, and links with ConnectSecurly." />
 
   <style>
     :root{
@@ -19,6 +19,8 @@
       --blue:#1e62ff;
       --blue2:#00b3ff;
       --good:#12b981;
+      --warning:#f59e0b;
+      --danger:#ef4444;
 
       --shadow: 0 18px 50px rgba(2, 8, 23, .12);
       --shadow2: 0 10px 24px rgba(2, 8, 23, .10);
@@ -218,6 +220,23 @@
     .card h3{margin:12px 0 8px; font-size:16.5px}
     .card p{margin:0; color:var(--muted); line-height:1.65; font-size:14.2px}
 
+    /* Badge row */
+    .badgeRow{
+      display:flex; gap:8px; flex-wrap:wrap;
+      margin-top:10px;
+      padding-top:10px;
+      border-top:1px solid rgba(15,23,42,.06);
+    }
+    .badgeSmall{
+      font-weight:900;
+      font-size:11px;
+      padding:4px 8px;
+      border-radius:8px;
+      background: rgba(30,98,255,.10);
+      color: rgba(30,98,255,1);
+      text-transform:uppercase;
+    }
+
     /* Defense+ section */
     .modeWrap{
       display:grid;
@@ -314,7 +333,44 @@
       line-height:1.6;
     }
 
-    /* How + support */
+    /* Scam Shield Demo Result */
+    .demoResult{
+      background: rgba(255,255,255,.92);
+      border:1px solid rgba(15,23,42,.08);
+      border-radius: var(--r20);
+      padding:22px;
+      box-shadow: var(--shadow2);
+      margin-top:14px;
+    }
+    .resultHeader{
+      display:flex; justify-content:space-between; align-items:center;
+      gap:12px;
+      margin-bottom:14px;
+      padding-bottom:14px;
+      border-bottom:1px solid rgba(15,23,42,.08);
+    }
+    .resultTitle{font-weight:900; font-size:14px; color:var(--text)}
+    .riskBadge{
+      font-weight:900;
+      font-size:12px;
+      padding:6px 12px;
+      border-radius:12px;
+      background: rgba(239,68,68,.10);
+      color: var(--danger);
+      text-transform:uppercase;
+      border:1px solid rgba(239,68,68,.20);
+    }
+    .resultBody{display:grid; gap:12px}
+    .resultRow{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:10px;
+      background: rgba(15,23,42,.02);
+      border-radius:12px;
+    }
+    .resultRow b{display:block; margin-bottom:2px; font-size:13.5px}
+    .resultRow div{color:var(--muted2); font-size:13px; line-height:1.5}
+
+    /* How it works */
     .two{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -342,6 +398,33 @@
     }
     .step b{display:block; margin-bottom:3px}
     .step div{color:var(--muted2); font-size:13.5px; line-height:1.55}
+
+    /* Examples grid */
+    .examplesGrid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:12px;
+      margin-top:12px;
+    }
+    @media (max-width: 640px){ .examplesGrid{grid-template-columns:1fr} }
+    
+    .exampleItem{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:12px;
+      background: rgba(255,255,255,.80);
+      border:1px solid rgba(15,23,42,.08);
+      border-radius:12px;
+    }
+    .exampleIcon{
+      width:24px; height:24px; flex:0 0 auto;
+      border-radius:8px;
+      background: rgba(30,98,255,.10);
+      display:grid; place-items:center;
+      font-weight:900;
+      color: var(--blue);
+      font-size:12px;
+    }
+    .exampleText{font-size:13.5px; color:var(--muted2); line-height:1.5}
 
     /* CTA block */
     .ctaBlock{
@@ -384,6 +467,7 @@
     .d1{animation-delay:.06s}
     .d2{animation-delay:.14s}
     .d3{animation-delay:.22s}
+    .d4{animation-delay:.30s}
 
     @keyframes rise{to{opacity:1; transform: translateY(0)}}
   </style>
@@ -403,15 +487,15 @@
       </a>
 
       <nav class="links" aria-label="Primary">
-        <a href="#safety">Online safety</a>
-        <a href="#defenseplus">Defense+ Mode</a>
+        <a href="#features">Features</a>
+        <a href="#scamshield">AI Scam Shield</a>
         <a href="#how">How it works</a>
         <a href="#support">Support</a>
       </nav>
 
       <div class="right">
         <a class="btn small" href="mailto:support@connectsecurly.com">Support</a>
-        <a class="btn small primary" href="#get-started">Get ConnectSecurly</a>
+        <a class="btn small primary" href="#get-started">Get Early Access</a>
       </div>
     </div>
   </header>
@@ -421,28 +505,27 @@
     <section class="hero">
       <div class="wrap heroGrid">
         <div>
-          <span class="pill fadeUp d1"><span class="dot"></span> VPN + DNS Protection • Defense+ Mode</span>
-          <h1 class="fadeUp d2">The modern shield for the Internet.</h1>
+          <span class="pill fadeUp d1"><span class="dot"></span> VPN • DNS Protection • AI Scam Shield</span>
+          <h1 class="fadeUp d2">VPN, phishing defense, and AI scam protection in one app.</h1>
 
           <p class="lead fadeUp d3">
-            ConnectSecurly combines a secure VPN with DNS-level protection to help reduce online threats.
-            Turn on <b>Defense+ Mode</b> to automatically help block phishing and malicious domains, and filter ads and trackers — across devices and networks.
+            ConnectSecurly protects your browsing, blocks dangerous domains, and helps you detect suspicious messages, links, QR codes, UPI IDs, and phone numbers before you trust them.
           </p>
 
           <div class="cta fadeUp d3">
-            <a class="btn primary" href="#get-started">Get started</a>
-            <a class="btn" href="mailto:support@connectsecurly.com">Contact support</a>
+            <a class="btn primary" href="#get-started">Get Early Access</a>
+            <a class="btn" href="#scamshield">Explore Scam Shield</a>
           </div>
 
           <p class="note fadeUp d3">
-            Streaming note: optimized for smooth streaming, but availability may vary by region and service updates.
+            Available for early access: VPN, Defense+, and AI Scam Shield. Multiple regions optimized for streaming and Indian networks.
           </p>
         </div>
 
         <div class="visual" aria-label="Protection preview">
           <div class="visualHead">
             <span>Encryption</span>
-            <span>Defense+ filtering</span>
+            <span>Threat detection</span>
           </div>
           <div class="visualBody">
             <svg viewBox="0 0 900 360" role="img" style="width:100%;height:auto;display:block;border-radius:16px;">
@@ -485,7 +568,7 @@
                 <text x="92" y="67" font-size="15">Encrypted tunnel</text>
 
                 <rect x="590" y="40" width="260" height="42" rx="16" fill="rgba(255,255,255,.82)" stroke="rgba(15,23,42,.08)"/>
-                <text x="612" y="67" font-size="15">Defense+ on</text>
+                <text x="612" y="67" font-size="15">AI + Defense+</text>
               </g>
             </svg>
           </div>
@@ -494,11 +577,11 @@
       </div>
     </section>
 
-    <!-- ONLINE SAFETY -->
-    <section id="safety">
+    <!-- FEATURES -->
+    <section id="features">
       <div class="wrap">
         <div class="sectionHead">
-          <h2>Everything you need for online safety</h2>
+          <h2>Everything you need for digital safety</h2>
           <p>Protection across devices and networks</p>
         </div>
 
@@ -509,8 +592,11 @@
                 <path d="M12 2.5l7 3.2v6.6c0 5.1-3.1 8.6-7 9.8-3.9-1.2-7-4.7-7-9.8V5.7L12 2.5z" stroke="#1e62ff" stroke-width="1.8"/>
               </svg>
             </div>
-            <h3>Encrypted VPN tunnel</h3>
-            <p>Helps keep your connection private on public Wi-Fi and untrusted networks.</p>
+            <h3>VPN Protection</h3>
+            <p>Secure browsing on public Wi-Fi with encrypted internet connection and full privacy protection.</p>
+            <div class="badgeRow">
+              <span class="badgeSmall">VPN</span>
+            </div>
           </article>
 
           <article class="card">
@@ -521,57 +607,275 @@
                 <path d="M12 17h.01" stroke="#1e62ff" stroke-width="3" stroke-linecap="round"/>
               </svg>
             </div>
-            <h3>Anti-phishing defense</h3>
-            <p>Helps reduce risk by blocking many known phishing and malicious domains.</p>
+            <h3>Defense+ DNS Shield</h3>
+            <p>Blocks malicious domains, phishing websites, ads, and trackers. Protects before dangerous pages open.</p>
+            <div class="badgeRow">
+              <span class="badgeSmall">DNS Protection</span>
+            </div>
           </article>
 
           <article class="card">
             <div class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
-                <path d="M4 12h16" stroke="#1e62ff" stroke-width="1.8" stroke-linecap="round"/>
-                <path d="M7 7l10 10" stroke="#1e62ff" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M9 12l2 2 4-4m7-4a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" stroke="#1e62ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
-            <h3>Shield against hackers</h3>
-            <p>Reduces exposure to common network attacks by encrypting traffic and filtering risky domains.</p>
+            <h3>AI Scam Shield</h3>
+            <p>Check suspicious WhatsApp messages, SMS, QR codes, UPI IDs, and links. Get risk level and safe actions.</p>
+            <div class="badgeRow">
+              <span class="badgeSmall">AI Scam Shield</span>
+            </div>
           </article>
 
           <article class="card">
             <div class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
-                <path d="M4 7h16M4 12h16M4 17h16" stroke="#1e62ff" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M10 6h4m-4 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2z" stroke="#1e62ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 10v4" stroke="#1e62ff" stroke-width="1.8" stroke-linecap="round"/>
               </svg>
             </div>
-            <h3>Ads & tracker filtering</h3>
-            <p>Helps reduce tracking and clutter across websites and many apps.</p>
+            <h3>UPI & QR Safety</h3>
+            <p>Scan QR codes before payments. Detect suspicious UPI links and check unknown UPI IDs safely.</p>
+            <div class="badgeRow">
+              <span class="badgeSmall">UPI Safety</span>
+            </div>
           </article>
 
           <article class="card">
             <div class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
-                <path d="M21 8l-9 5-9-5V6l9 5 9-5v2z" stroke="#1e62ff" stroke-width="1.8" stroke-linejoin="round"/>
-                <path d="M3 10v8l9 5 9-5v-8" stroke="#1e62ff" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M13.828 10.172a4 4 0 0 0-5.656 0l-4.243 4.243a4 4 0 1 0 5.656 5.656L10 15.657m3.828-3.829a4 4 0 0 1 0 5.656l-4.243 4.243a4 4 0 0 1-5.656-5.656l1.414-1.414" stroke="#1e62ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
-            <h3>Encrypted DNS (optional)</h3>
-            <p>Encrypts DNS lookups to improve privacy and reduce certain forms of tracking.</p>
+            <h3>Suspicious Link Checker</h3>
+            <p>Paste any link to detect phishing, fake KYC, courier, job, or investment scams instantly.</p>
+            <div class="badgeRow">
+              <span class="badgeSmall">Link Detection</span>
+            </div>
           </article>
 
           <article class="card">
             <div class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
-                <path d="M4 7h16v10H4V7z" stroke="#1e62ff" stroke-width="1.8"/>
-                <path d="M9 12l2 2 4-5" stroke="#1e62ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3 5a2 2 0 0 1 2-2h3.28a1 1 0 0 1 .948.684l1.498 4.493a1 1 0 0 1-.502 1.21l-2.257 1.13a11.042 11.042 0 0 0 5.516 5.516l1.13-2.257a1 1 0 0 1 1.21-.502l4.493 1.498a1 1 0 0 1 .684.949V19a2 2 0 0 1-2 2h-1C9.716 21 3 14.284 3 6V5z" stroke="#1e62ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
-            <h3>Multiple locations + streaming</h3>
-            <p>Choose from multiple regions for speed and performance. Optimized for streaming (availability may vary).</p>
+            <h3>Number Risk Check</h3>
+            <p>Check unknown phone numbers with number reputation intelligence to identify suspicious callers.</p>
+            <div class="badgeRow">
+              <span class="badgeSmall">Phone Intelligence</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M17 20h5v-2a3 3 0 0 0-5.356-1.362M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.862M7 20H2v-2a3 3 0 0 1 5.356-1.362M21 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" stroke="#1e62ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Family Safety Mode</h3>
+            <p>Protect family with trusted contacts. Warn parents, seniors before risky payments or scam messages.</p>
+            <div class="badgeRow">
+              <span class="badgeSmall">Family Protection</span>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- DEFENSE+ MODE -->
+    <!-- AI SCAM SHIELD SECTION -->
+    <section id="scamshield">
+      <div class="wrap">
+        <div class="sectionHead">
+          <h2>AI Scam Shield for India</h2>
+          <p>Detect threats before they strike</p>
+        </div>
+
+        <div class="panel">
+          <p style="color:var(--muted); font-size:16px; line-height:1.75; margin:0 0 14px;">
+            Online fraud often starts before a payment: a WhatsApp message, fake bank SMS, courier call, QR code, UPI ID, or phishing link. ConnectSecurly's AI Scam Shield helps users check suspicious content and understand the risk <b>before taking action</b>.
+          </p>
+
+          <div class="examplesGrid">
+            <div class="exampleItem">
+              <div class="exampleIcon">⚠</div>
+              <div class="exampleText"><b>Fake KYC</b> message asking for documents</div>
+            </div>
+            <div class="exampleItem">
+              <div class="exampleIcon">📦</div>
+              <div class="exampleText"><b>Fake courier/FedEx</b> delivery scam</div>
+            </div>
+            <div class="exampleItem">
+              <div class="exampleIcon">🚨</div>
+              <div class="exampleText"><b>Fake police call</b> threatening legal action</div>
+            </div>
+            <div class="exampleItem">
+              <div class="exampleIcon">💳</div>
+              <div class="exampleText"><b>QR code refund scam</b> asking for scan</div>
+            </div>
+            <div class="exampleItem">
+              <div class="exampleIcon">💰</div>
+              <div class="exampleText"><b>UPI collect/request</b> scam</div>
+            </div>
+            <div class="exampleItem">
+              <div class="exampleIcon">💼</div>
+              <div class="exampleText"><b>Fake job or loan</b> processing fee scam</div>
+            </div>
+            <div class="exampleItem">
+              <div class="exampleIcon">📈</div>
+              <div class="exampleText"><b>Investment guarantee</b> scam</div>
+            </div>
+            <div class="exampleItem">
+              <div class="exampleIcon">🎯</div>
+              <div class="exampleText"><b>Hinglish/Hindi</b> fraud messages</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Demo result card -->
+        <div class="demoResult">
+          <div class="resultHeader">
+            <div class="resultTitle">Example: Fake KYC Scam Detection</div>
+            <div class="riskBadge">High Risk</div>
+          </div>
+          <div class="resultBody">
+            <div class="resultRow">
+              <div>
+                <b>Scam Type</b>
+                <div>Fake KYC Verification</div>
+              </div>
+            </div>
+            <div class="resultRow">
+              <div>
+                <b>Why It's Suspicious</b>
+                <div>Urgency language, suspicious link, requests for OTP and personal documents</div>
+              </div>
+            </div>
+            <div class="resultRow">
+              <div>
+                <b>Safe Action</b>
+                <div><strong>Do not click this link.</strong> Open your bank app directly from your home screen. Verify your KYC status there.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how">
+      <div class="wrap two">
+        <div class="panel">
+          <div class="sectionHead" style="margin-bottom:10px;">
+            <h2>How Scam Shield works</h2>
+            <p>4 simple steps</p>
+          </div>
+
+          <div class="steps">
+            <div class="step">
+              <div class="num">1</div>
+              <div>
+                <b>Paste, upload, scan, or share</b>
+                <div>Send us suspicious WhatsApp text, SMS, screenshot, QR code, UPI ID, link, or phone number.</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="num">2</div>
+              <div>
+                <b>AI extracts data</b>
+                <div>ConnectSecurly analyzes text, links, QR codes, UPI IDs, and phone numbers safely.</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="num">3</div>
+              <div>
+                <b>Threat check</b>
+                <div>AI + threat intelligence scans for known scam patterns and risk indicators.</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="num">4</div>
+              <div>
+                <b>Get risk score & actions</b>
+                <div>See risk level (Low/Medium/High), reason, and safe next steps.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="sectionHead" style="margin-bottom:10px;">
+            <h2>Built for Indian digital safety</h2>
+            <p>Tailored protections</p>
+          </div>
+
+          <p class="small" style="margin:0 0 12px;">
+            ConnectSecurly understands scams targeting India:
+          </p>
+
+          <div class="steps">
+            <div class="step" style="gap:8px; padding:8px;">
+              <div class="num" style="width:26px; height:26px; font-size:13px;">✓</div>
+              <div style="padding-top:2px">
+                <div>UPI and payment scams</div>
+              </div>
+            </div>
+            <div class="step" style="gap:8px; padding:8px;">
+              <div class="num" style="width:26px; height:26px; font-size:13px;">✓</div>
+              <div style="padding-top:2px">
+                <div>QR code fraud and tricks</div>
+              </div>
+            </div>
+            <div class="step" style="gap:8px; padding:8px;">
+              <div class="num" style="width:26px; height:26px; font-size:13px;">✓</div>
+              <div style="padding-top:2px">
+                <div>Fake KYC and identity theft</div>
+              </div>
+            </div>
+            <div class="step" style="gap:8px; padding:8px;">
+              <div class="num" style="width:26px; height:26px; font-size:13px;">✓</div>
+              <div style="padding-top:2px">
+                <div>WhatsApp and SMS fraud</div>
+              </div>
+            </div>
+            <div class="step" style="gap:8px; padding:8px;">
+              <div class="num" style="width:26px; height:26px; font-size:13px;">✓</div>
+              <div style="padding-top:2px">
+                <div>Courier and delivery scams</div>
+              </div>
+            </div>
+            <div class="step" style="gap:8px; padding:8px;">
+              <div class="num" style="width:26px; height:26px; font-size:13px;">✓</div>
+              <div style="padding-top:2px">
+                <div>Senior citizen protection</div>
+              </div>
+            </div>
+          </div>
+
+          <p class="small" style="margin-top:12px; padding-top:12px; border-top:1px solid rgba(15,23,42,.08);">
+            Messages and warnings are available in Hinglish and Hindi for easier understanding.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEFENSE+ SMARTER -->
+    <section>
+      <div class="wrap">
+        <div class="panel">
+          <div class="sectionHead" style="margin-bottom:10px;">
+            <h2>Defense+ gets smarter</h2>
+            <p>Community-powered protection</p>
+          </div>
+
+          <p class="small">
+            When you report suspicious links or scam patterns, they can be reviewed and added to Defense+ threat protection. This helps protect more users over time, making the network stronger against emerging threats.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEFENSE+ MODE DEEP DIVE -->
     <section id="defenseplus">
       <div class="wrap">
         <div class="sectionHead">
@@ -599,7 +903,7 @@
 
           <div class="panel">
             <div class="sectionHead" style="margin-bottom:10px;">
-              <h2>What changes when it’s on?</h2>
+              <h2>What changes when it's on?</h2>
               <p>Simple explanation</p>
             </div>
 
@@ -614,12 +918,12 @@
       </div>
     </section>
 
-    <!-- HOW + SUPPORT -->
-    <section id="how">
+    <!-- SUPPORT -->
+    <section id="support">
       <div class="wrap two">
         <div class="panel">
           <div class="sectionHead" style="margin-bottom:10px;">
-            <h2>How it works</h2>
+            <h2>How to get started</h2>
             <p>3 quick steps</p>
           </div>
 
@@ -627,41 +931,41 @@
             <div class="step">
               <div class="num">1</div>
               <div>
-                <b>Login</b>
-                <div>Sign in with your email and password (or SSO if enabled).</div>
+                <b>Get early access</b>
+                <div>Request access to ConnectSecurly and join our growing community.</div>
               </div>
             </div>
             <div class="step">
               <div class="num">2</div>
               <div>
-                <b>Select a location</b>
-                <div>Pick the nearest region for speed or choose a specific location.</div>
+                <b>Download the app</b>
+                <div>Install on your device. Available for iOS and Android.</div>
               </div>
             </div>
             <div class="step">
               <div class="num">3</div>
               <div>
-                <b>Connect</b>
-                <div>Your secure tunnel activates in seconds.</div>
+                <b>Connect and protect</b>
+                <div>Enable VPN, Defense+, and start using AI Scam Shield immediately.</div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="panel" id="support">
+        <div class="panel">
           <div class="sectionHead" style="margin-bottom:10px;">
             <h2>Support</h2>
-            <p>We’re here to help</p>
+            <p>We're here to help</p>
           </div>
 
           <p class="small" style="margin:0 0 12px;">
-            Setup help, login issues, and troubleshooting:
+            Setup help, feature questions, and troubleshooting:
           </p>
 
           <a class="btn primary" href="mailto:support@connectsecurly.com">support@connectsecurly.com</a>
 
           <p class="small" style="margin-top:12px;">
-            Tip: Include your device type and network (home/office/public Wi-Fi) for faster support.
+            Tip: Include your device type and network for faster support. We respond within 24 hours.
           </p>
         </div>
       </div>
@@ -672,11 +976,11 @@
       <div class="wrap">
         <div class="ctaBlock">
           <div>
-            <h3>Ready to connect securely?</h3>
-            <p>Start using ConnectSecurly with strong encryption, Defense+ Mode, and multiple locations.</p>
+            <h3>Ready to protect yourself from scams?</h3>
+            <p>Get ConnectSecurly with VPN, Defense+, and AI Scam Shield to protect your browsing, payments, and family.</p>
           </div>
           <div class="ctaActions">
-            <a class="btn primary" href="mailto:support@connectsecurly.com?subject=ConnectSecurly%20Access%20Request">Request access</a>
+            <a class="btn primary" href="mailto:support@connectsecurly.com?subject=ConnectSecurly%20Early%20Access%20Request">Get Early Access</a>
             <a class="btn" href="#top">Back to top</a>
           </div>
         </div>
