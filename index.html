@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bharat Fraud Shield — VPN, DNS Protection & AI Scam Detection</title>
-  <meta name="description" content="Bharat Fraud Shield protects Indian users from online fraud. VPN encryption, phishing defense, AI scam detection, UPI safety, and family protection in one app." />
+  <title>ConnectSecurly — VPN, DNS Protection & AI Scam Shield</title>
+  <meta name="description" content="Protect your browsing, block phishing domains, and detect suspicious WhatsApp messages, SMS, QR codes, UPI IDs, phone numbers, and links with ConnectSecurly." />
 
   <style>
     :root{
@@ -82,7 +82,6 @@
       color:var(--white);
       font-size:20px;
     }
-    .logo svg{width:22px; height:22px; opacity:1}
     .brand-text{font-size:18px; color:var(--white)}
     .links{
       display:flex; gap:24px; align-items:center;
@@ -391,8 +390,8 @@
       border:1px solid rgba(255,107,53,.2);
     }
 
-    /* Scam Shield Hero */
-    .shieldSection{
+    /* AI Tool Section */
+    .aiSection{
       background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
       color:var(--white);
       padding:70px 0;
@@ -400,20 +399,213 @@
       overflow:hidden;
     }
 
-    .shieldSection::before{
+    .aiSection::before{
       content:'';
       position:absolute;
-      top:0;
-      right:0;
-      width:500px;
-      height:500px;
-      background:radial-gradient(circle, rgba(255,107,53,.1) 0%, transparent 70%);
+      top:-50%;
+      right:-10%;
+      width:600px;
+      height:600px;
+      background:radial-gradient(circle, rgba(255,107,53,.15) 0%, transparent 70%);
       border-radius:50%;
     }
 
-    .shieldContent{
+    .aiContent{
       position:relative;
       z-index:2;
+    }
+
+    .aiGrid{
+      display:grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap:50px;
+      align-items:stretch;
+    }
+
+    @media (max-width: 1024px){
+      .aiGrid{grid-template-columns:1fr; gap:30px}
+    }
+
+    .aiText h2{
+      color:var(--white);
+      margin-bottom:20px;
+    }
+
+    .aiText p{
+      font-size:16px;
+      line-height:1.8;
+      opacity:.95;
+      margin:0 0 20px;
+    }
+
+    .aiDetector{
+      background: rgba(255,255,255,.08);
+      border:2px solid rgba(255,107,53,.3);
+      border-radius:var(--r24);
+      padding:30px;
+      backdrop-filter: blur(10px);
+    }
+
+    .detectorTitle{
+      font-size:16px;
+      font-weight:900;
+      color:var(--saffron);
+      margin:0 0 20px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+
+    .inputGroup{
+      margin-bottom:20px;
+    }
+
+    .inputGroup label{
+      display:block;
+      font-size:13px;
+      font-weight:700;
+      margin-bottom:8px;
+      color:rgba(255,255,255,.9);
+    }
+
+    .inputGroup textarea{
+      width:100%;
+      border:2px solid rgba(255,107,53,.2);
+      border-radius:12px;
+      padding:12px;
+      font-family:var(--font);
+      font-size:13px;
+      background:rgba(255,255,255,.05);
+      color:var(--white);
+      resize:vertical;
+      min-height:100px;
+      transition: all .3s ease;
+    }
+
+    .inputGroup textarea::placeholder{
+      color:rgba(255,255,255,.5);
+    }
+
+    .inputGroup textarea:focus{
+      outline:none;
+      border-color:var(--saffron);
+      background:rgba(255,255,255,.08);
+      box-shadow: 0 0 20px rgba(255,107,53,.2);
+    }
+
+    .analyzeBtn{
+      width:100%;
+      padding:14px;
+      background: linear-gradient(135deg, var(--saffron) 0%, var(--saffron-light) 100%);
+      border:0;
+      border-radius:12px;
+      color:var(--white);
+      font-weight:900;
+      cursor:pointer;
+      transition: all .3s ease;
+      font-size:14px;
+    }
+
+    .analyzeBtn:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(255,107,53,.4);
+    }
+
+    .analyzeBtn:active{
+      transform: translateY(0);
+    }
+
+    .analyzing{
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    /* Result Display */
+    .resultBox{
+      margin-top:20px;
+      padding:20px;
+      background:rgba(255,255,255,.05);
+      border-left:4px solid var(--saffron);
+      border-radius:12px;
+      display:none;
+    }
+
+    .resultBox.show{
+      display:block;
+      animation: slideUp .5s ease;
+    }
+
+    .resultRisk{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:16px;
+      padding-bottom:12px;
+      border-bottom:1px solid rgba(255,107,53,.2);
+    }
+
+    .resultRiskLabel{
+      font-size:13px;
+      font-weight:700;
+      color:rgba(255,255,255,.7);
+    }
+
+    .riskLevel{
+      padding:6px 14px;
+      border-radius:20px;
+      font-weight:900;
+      font-size:12px;
+      text-transform:uppercase;
+    }
+
+    .riskLevel.high{
+      background:rgba(231,76,60,.3);
+      color:#ff6b6b;
+      border:1px solid rgba(231,76,60,.5);
+    }
+
+    .riskLevel.medium{
+      background:rgba(243,156,18,.3);
+      color:#ffc107;
+      border:1px solid rgba(243,156,18,.5);
+    }
+
+    .riskLevel.low{
+      background:rgba(39,174,96,.3);
+      color:#51cf66;
+      border:1px solid rgba(39,174,96,.5);
+    }
+
+    .resultDetails{
+      display:grid;
+      gap:12px;
+    }
+
+    .resultItem{
+      padding:10px;
+      background:rgba(255,255,255,.03);
+      border-left:3px solid var(--saffron);
+      border-radius:8px;
+    }
+
+    .resultItem strong{
+      display:block;
+      color:var(--saffron);
+      font-size:12px;
+      margin-bottom:4px;
+      text-transform:uppercase;
+    }
+
+    .resultItem span{
+      font-size:13px;
+      color:rgba(255,255,255,.8);
+      line-height:1.5;
+    }
+
+    /* Scam Shield Hero */
+    .shieldSection{
+      background:linear-gradient(135deg, rgba(255,107,53,.08) 0%, rgba(31,132,73,.05) 100%);
+      border-top:3px solid var(--saffron);
+      padding:70px 0;
+      position:relative;
     }
 
     .shieldGrid{
@@ -428,14 +620,14 @@
     }
 
     .shieldText h2{
-      color:var(--white);
+      color:var(--navy);
       margin-bottom:20px;
     }
 
     .shieldText p{
-      font-size:17px;
+      font-size:16px;
       line-height:1.8;
-      opacity:.95;
+      color:var(--text-light);
       margin:0 0 20px;
     }
 
@@ -455,10 +647,9 @@
       gap:10px;
       align-items:flex-start;
       padding:12px;
-      background:rgba(255,255,255,.08);
-      border-left:3px solid var(--saffron);
+      background:rgba(31,132,73,.05);
+      border-left:3px solid var(--green);
       border-radius:8px;
-      backdrop-filter:blur(10px);
     }
 
     .scamIcon{
@@ -473,7 +664,7 @@
 
     .scamText b{
       display:block;
-      color:var(--saffron);
+      color:var(--navy);
       margin-bottom:2px;
     }
 
@@ -483,11 +674,11 @@
     }
 
     .demoCard{
-      background: linear-gradient(135deg, rgba(255,255,255,.95), rgba(255,255,255,.88));
+      background:var(--white);
       border:2px solid rgba(255,107,53,.2);
       border-radius:var(--r20);
       padding:30px;
-      box-shadow: 0 20px 50px rgba(0,0,0,.2);
+      box-shadow:var(--shadow2);
     }
 
     .demoHeader{
@@ -515,7 +706,6 @@
       color: var(--white);
       text-transform:uppercase;
       border:2px solid rgba(231,76,60,.3);
-      box-shadow: 0 8px 20px rgba(231,76,60,.25);
     }
 
     .demoBody{
@@ -603,46 +793,6 @@
       font-size:14px;
       color:var(--text-light);
       line-height:1.6;
-    }
-
-    /* Features list */
-    .featuresList{
-      display:grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap:16px;
-      margin:24px 0;
-    }
-
-    @media (max-width: 640px){
-      .featuresList{grid-template-columns:1fr}
-    }
-
-    .featureItem{
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-      padding:14px;
-      background:rgba(31,132,73,.05);
-      border-left:3px solid var(--green);
-      border-radius:8px;
-    }
-
-    .featureItem::before{
-      content:'✓';
-      font-weight:900;
-      color:var(--green);
-      font-size:18px;
-      flex:0 0 auto;
-    }
-
-    .featureText{
-      font-size:14px;
-      color:var(--text-light);
-      line-height:1.6;
-    }
-
-    .featureText strong{
-      color:var(--navy);
     }
 
     /* CTA Block */
@@ -782,6 +932,11 @@
       50%{transform:translateY(-20px)}
     }
 
+    @keyframes pulse{
+      0%, 100%{opacity:1}
+      50%{opacity:.7}
+    }
+
     .fadeIn{
       animation: slideUp 0.6s ease forwards;
     }
@@ -794,19 +949,19 @@
     <div class="wrap nav">
       <a class="brand" href="#top">
         <div class="logo">🛡️</div>
-        <span class="brand-text">Bharat Fraud Shield</span>
+        <span class="brand-text">ConnectSecurly</span>
       </a>
 
       <nav class="links" aria-label="Primary">
-        <a href="#features">Suraksha Features</a>
-        <a href="#scamshield">Fraud Shield</a>
-        <a href="#how">Kaise Kaam Karta</a>
-        <a href="#contact">Contact</a>
+        <a href="#ai-tool">AI Detector</a>
+        <a href="#features">Features</a>
+        <a href="#scamshield">Scam Shield</a>
+        <a href="#how">How It Works</a>
       </nav>
 
       <div class="right">
-        <a class="btn small" href="mailto:support@bharatfraudshield.com">Support</a>
-        <a class="btn small primary" href="#access">Get Access</a>
+        <a class="btn small" href="mailto:support@connectsecurly.com">Support</a>
+        <a class="btn small primary" href="#access">Get Early Access</a>
       </div>
     </div>
   </header>
@@ -818,42 +973,89 @@
         <div>
           <span class="pill">
             <span class="dot"></span>
-            VPN • DNS Protection • AI Fraud Detection
+            AI Powered • VPN • DNS Protection
           </span>
 
-          <h1>Bharat Suraksha, Online Mehfuz</h1>
+          <h1>VPN, phishing defense, and AI scam protection in one app.</h1>
 
           <p class="lead">
-            Bharat Fraud Shield offers complete digital security for Indian users. Secure your browsing, detect scams in real-time, and protect your family from online fraud with AI-powered protection.
+            ConnectSecurly protects your browsing, blocks dangerous domains, and helps you detect suspicious messages, links, QR codes, UPI IDs, and phone numbers before you trust them.
           </p>
 
           <div class="cta">
-            <a class="btn primary" href="#access">Get Early Access</a>
-            <a class="btn secondary" href="#scamshield">Explore Fraud Shield</a>
+            <a class="btn primary" href="#ai-tool">Try AI Detector Now</a>
+            <a class="btn secondary" href="#scamshield">Explore Scam Shield</a>
           </div>
 
           <p class="note">
-            ✓ VPN Encryption • ✓ DNS Suraksha • ✓ AI Scam Detection • ✓ UPI Safety • ✓ Family Protection
+            ✓ AI Scam Detection • ✓ VPN Encryption • ✓ DNS Protection • ✓ UPI Safety • ✓ Family Protection
           </p>
         </div>
 
         <div class="heroVisual">
           <div class="visualCard card1">
             <div class="cardContent">
-              <div class="cardIcon">🔒</div>
+              <div class="cardIcon">🤖</div>
               <div class="cardText">
-                <b>VPN Suraksha</b>
-                <span>Encrypted Browsing</span>
+                <b>AI Detection</b>
+                <span>Real-time Analysis</span>
               </div>
             </div>
           </div>
           <div class="visualCard card2">
             <div class="cardContent">
-              <div class="cardIcon">⚠️</div>
+              <div class="cardIcon">⚡</div>
               <div class="cardText">
-                <b>Fraud Detection</b>
-                <span>Real-time Protection</span>
+                <b>Instant Results</b>
+                <span>Risk Assessment</span>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI DETECTOR TOOL -->
+    <section id="ai-tool" class="aiSection">
+      <div class="wrap aiContent">
+        <div class="sectionHead" style="margin-bottom:40px; color:var(--white);">
+          <span class="sectionTag" style="color:var(--saffron);">🤖 AI Powered</span>
+          <h2 style="color:var(--white); margin-bottom:20px;">AI Scam Shield for India</h2>
+        </div>
+
+        <div class="aiGrid">
+          <div class="aiText">
+            <h3 style="color:var(--white); margin-top:0;">Check Any Message Instantly</h3>
+            <p>
+              Online fraud often starts before a payment: a WhatsApp message, fake bank SMS, courier call, QR code, UPI ID, or phishing link. ConnectSecurly's AI helps users check suspicious content and understand the risk before taking action.
+            </p>
+
+            <div style="margin-top:30px;">
+              <h4 style="color:var(--saffron); margin-bottom:12px; font-size:14px; text-transform:uppercase;">Try These Examples:</h4>
+              <div style="display:grid; gap:8px;">
+                <button class="btn secondary small" onclick="setExample('Congratulations! You won ₹10 lakhs in Amazon Lucky Draw. Click to claim: bit.ly/claim-reward')">Fake KYC Message</button>
+                <button class="btn secondary small" onclick="setExample('Your package from FedEx cannot be delivered. Verify address: http://fedex-delivery-update.com')">Fake Courier/FedEx</button>
+                <button class="btn secondary small" onclick="setExample('Police verification pending. Confirm identity at http://police-kyc.verify.com using Aadhar')">Fake Police Call</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="aiDetector">
+            <div class="detectorTitle">🔍 AI Scam Detector</div>
+            
+            <div class="inputGroup">
+              <label for="scamInput">Paste, upload, scan, or share suspicious content:</label>
+              <textarea id="scamInput" placeholder="Enter the suspicious message, link, QR code, UPI ID, phone number or screenshot you want to check..."></textarea>
+            </div>
+
+            <button class="analyzeBtn" onclick="analyzeScam()">🔎 Analyze with AI</button>
+
+            <div class="resultBox" id="resultBox">
+              <div class="resultRisk">
+                <span class="resultRiskLabel">Risk Assessment:</span>
+                <span class="riskLevel" id="riskLevel"></span>
+              </div>
+              <div class="resultDetails" id="resultDetails"></div>
             </div>
           </div>
         </div>
@@ -865,17 +1067,17 @@
       <div class="wrap">
         <div class="sectionHead">
           <span class="sectionTag">Suraksha Features</span>
-          <h2>Bharatiyon ke liye Digital Safety</h2>
+          <h2>Complete Digital Safety Protection</h2>
           <p style="font-size:18px; color:var(--text-light); margin-top:12px; max-width:600px; margin-left:auto; margin-right:auto;">
-            Complete protection across all your devices and networks
+            ConnectSecurly protects your internet, your payments, and your family from online scams
           </p>
         </div>
 
         <div class="grid">
           <article class="card">
             <div class="icon">🔐</div>
-            <h3>VPN Encryption</h3>
-            <p>Secure browsing on public Wi-Fi with military-grade encryption. Protect your data and privacy everywhere.</p>
+            <h3>VPN Protection</h3>
+            <p>Secure browsing on public Wi-Fi. Encrypted internet connection. Privacy protection across all your devices.</p>
             <div class="badgeRow">
               <span class="badgeSmall">VPN</span>
               <span class="badgeSmall">Encryption</span>
@@ -884,8 +1086,8 @@
 
           <article class="card">
             <div class="icon">🛡️</div>
-            <h3>DNS Suraksha</h3>
-            <p>Blocks malicious domains, phishing websites, ads and trackers at the source. Protection before threats load.</p>
+            <h3>Defense+ DNS Shield</h3>
+            <p>Blocks malicious domains. Blocks phishing websites. Blocks ads and trackers. Protects users before dangerous pages open.</p>
             <div class="badgeRow">
               <span class="badgeSmall">DNS Protection</span>
               <span class="badgeSmall">Filtering</span>
@@ -894,18 +1096,18 @@
 
           <article class="card">
             <div class="icon">🤖</div>
-            <h3>Bharat Fraud Shield</h3>
-            <p>AI-powered scam detection. Check suspicious messages, links, and UPI requests instantly. Get risk assessment.</p>
+            <h3>AI Scam Shield</h3>
+            <p>Check WhatsApp messages, SMS, screenshots, QR codes, UPI IDs, phone numbers, and links. Get risk level with safe action steps.</p>
             <div class="badgeRow">
-              <span class="badgeSmall">AI Detection</span>
+              <span class="badgeSmall">AI Powered</span>
               <span class="badgeSmall">Real-time</span>
             </div>
           </article>
 
           <article class="card">
             <div class="icon">💳</div>
-            <h3>UPI Suraksha</h3>
-            <p>Scan QR codes before payment. Detect suspicious UPI links and verify unknown IDs safely before sending money.</p>
+            <h3>UPI & QR Safety</h3>
+            <p>Scan QR codes before making payment. Detect suspicious UPI payment links. Check unknown UPI IDs before sending money.</p>
             <div class="badgeRow">
               <span class="badgeSmall">UPI Safety</span>
               <span class="badgeSmall">QR Scan</span>
@@ -914,8 +1116,8 @@
 
           <article class="card">
             <div class="icon">🔗</div>
-            <h3>Link Detector</h3>
-            <p>Paste any link to instantly detect phishing, fake KYC, courier scams, job offers, and investment fraud.</p>
+            <h3>Suspicious Link Checker</h3>
+            <p>Detect phishing, fake KYC, fake bank, fake courier, fake job, loan scams, and investment fraud. Simple and easy to understand results.</p>
             <div class="badgeRow">
               <span class="badgeSmall">Link Analysis</span>
               <span class="badgeSmall">Phishing</span>
@@ -923,19 +1125,9 @@
           </article>
 
           <article class="card">
-            <div class="icon">📱</div>
-            <h3>Number Risk Check</h3>
-            <p>Verify unknown phone numbers using reputation intelligence. Identify suspicious callers and potential scammers.</p>
-            <div class="badgeRow">
-              <span class="badgeSmall">Phone Check</span>
-              <span class="badgeSmall">Reputation</span>
-            </div>
-          </article>
-
-          <article class="card">
             <div class="icon">👨‍👩‍👧‍👦</div>
-            <h3>Parivar Suraksha</h3>
-            <p>Protect your family with trusted contacts. Warn parents and seniors before risky payments or scam attempts.</p>
+            <h3>Family Safety Mode</h3>
+            <p>Add trusted family contacts. Protect parents and seniors. Warn before risky payments or suspicious messages from fraud calls and scams.</p>
             <div class="badgeRow">
               <span class="badgeSmall">Family Mode</span>
               <span class="badgeSmall">Senior Protection</span>
@@ -947,21 +1139,16 @@
 
     <!-- SCAM SHIELD HERO -->
     <section id="scamshield" class="shieldSection">
-      <div class="wrap shieldContent">
-        <div class="sectionHead" style="margin-bottom:40px; color:var(--white);">
-          <span class="sectionTag" style="color:var(--saffron);">Bharat Fraud Shield</span>
-          <h2 style="color:var(--white); margin-bottom:20px;">Scams Ka Mukabla, AI Ka Zariye</h2>
+      <div class="wrap">
+        <div class="sectionHead">
+          <span class="sectionTag">Common Scams</span>
+          <h2 style="color:var(--navy);">AI Scam Shield for India</h2>
         </div>
 
         <div class="shieldGrid">
           <div class="shieldText">
             <p>
-              Online fraud often starts with a message: WhatsApp scam, fake bank SMS, courier call, QR code request, or suspicious link. 
-              Bharat Fraud Shield helps you identify threats <b>before they cause damage</b>.
-            </p>
-
-            <p style="font-weight:700; color:var(--saffron); margin-top:20px;">
-              Common Scams We Detect:
+              Online fraud often starts with a message. ConnectSecurly's AI helps you identify threats before they cause damage.
             </p>
 
             <div class="shieldScams">
@@ -976,35 +1163,35 @@
                 <div class="scamIcon">📦</div>
                 <div class="scamText">
                   <b>Courier Scam</b>
-                  <span>Delivery fraud</span>
+                  <span>FedEx/DHL fraud</span>
                 </div>
               </div>
               <div class="scamItem">
-                <div class="scamIcon">🚨</div>
+                <div class="scamIcon">👮</div>
                 <div class="scamText">
-                  <b>Police Call</b>
-                  <span>Fake threats</span>
+                  <b>Fake Police Call</b>
+                  <span>Verification scams</span>
                 </div>
               </div>
               <div class="scamItem">
-                <div class="scamIcon">💰</div>
+                <div class="scamIcon">💳</div>
                 <div class="scamText">
-                  <b>UPI Fraud</b>
-                  <span>Payment scams</span>
+                  <b>QR Refund Scam</b>
+                  <span>Payment fraud</span>
+                </div>
+              </div>
+              <div class="scamItem">
+                <div class="scamIcon">📲</div>
+                <div class="scamText">
+                  <b>UPI Collect Scam</b>
+                  <span>Request fraud</span>
                 </div>
               </div>
               <div class="scamItem">
                 <div class="scamIcon">💼</div>
                 <div class="scamText">
-                  <b>Job Scam</b>
-                  <span>Fake offers</span>
-                </div>
-              </div>
-              <div class="scamItem">
-                <div class="scamIcon">📈</div>
-                <div class="scamText">
-                  <b>Investment</b>
-                  <span>Guaranteed returns</span>
+                  <b>Fake Job Offer</b>
+                  <span>Processing fee</span>
                 </div>
               </div>
             </div>
@@ -1013,26 +1200,26 @@
           <div class="demoSection">
             <div class="demoCard">
               <div class="demoHeader">
-                <div class="demoTitle">Example: Fake KYC Detection</div>
+                <div class="demoTitle">AI Analysis Example</div>
                 <div class="riskBadge">⚠️ High Risk</div>
               </div>
               <div class="demoBody">
                 <div class="demoRow">
                   <div>
                     <b>Scam Type</b>
-                    <div>Fake Bank KYC Verification</div>
+                    <div>Fake KYC Scam</div>
                   </div>
                 </div>
                 <div class="demoRow">
                   <div>
-                    <b>Sngatra (Red Flags)</b>
-                    <div>Urgency language, suspicious link, requests for OTP and personal documents</div>
+                    <b>Why It's Suspicious</b>
+                    <div>Urgency, suspicious link, asks for OTP. Real banks never request OTP via message.</div>
                   </div>
                 </div>
                 <div class="demoRow">
                   <div>
-                    <b>Surakshit Action</b>
-                    <div><strong>Do NOT click this link.</strong> Open your bank app directly. Verify KYC status from official app.</div>
+                    <b>Safe Action</b>
+                    <div>Do not click this link. Open your bank app directly. Verify with your bank's official number.</div>
                   </div>
                 </div>
               </div>
@@ -1046,160 +1233,33 @@
     <section id="how">
       <div class="wrap">
         <div class="sectionHead">
-          <span class="sectionTag">Kaise Kaam Karta</span>
-          <h2>Bharat Fraud Shield ki Prakriya</h2>
+          <span class="sectionTag">How It Works</span>
+          <h2>4 Simple Steps to Safety</h2>
         </div>
 
         <div class="stepsGrid">
           <div class="stepCard">
             <div class="stepNum">1</div>
-            <h4>Share Shak</h4>
-            <p>Send us suspicious text, message, screenshot, or link that seems fishy.</p>
+            <h4>Paste, Upload, Scan, or Share</h4>
+            <p>Submit suspicious content - message, link, screenshot, QR code, or UPI ID to the AI detector.</p>
           </div>
 
           <div class="stepCard">
             <div class="stepNum">2</div>
-            <h4>AI Analysis</h4>
-            <p>Our AI extracts and analyzes text, links, QR codes, and UPI IDs instantly.</p>
+            <h4>AI Extracts Content</h4>
+            <p>ConnectSecurly extracts text, link, QR, UPI ID, or phone number from your submission.</p>
           </div>
 
           <div class="stepCard">
             <div class="stepNum">3</div>
-            <h4>Check Karo</h4>
-            <p>Threat intelligence scans for known scam patterns and danger indicators.</p>
+            <h4>Threat Intelligence Check</h4>
+            <p>AI + threat intelligence scans for scam patterns against our database of known fraud.</p>
           </div>
 
           <div class="stepCard">
             <div class="stepNum">4</div>
-            <h4>Risk Score</h4>
-            <p>Get clear risk level (Low/Medium/High) with reason and safe next action.</p>
-          </div>
-        </div>
-
-        <div class="sectionHead" style="margin-top:60px;">
-          <h3 style="color:var(--navy);">Bharatiyon ke liye Special Features</h3>
-        </div>
-
-        <div class="featuresList">
-          <div class="featureItem">
-            <div class="featureText">
-              <strong>UPI & Payment Scams</strong> - Detect fake payment links and money transfer fraud
-            </div>
-          </div>
-          <div class="featureItem">
-            <div class="featureText">
-              <strong>QR Code Fraud</strong> - Verify codes before scanning for payment or verification
-            </div>
-          </div>
-          <div class="featureItem">
-            <div class="featureText">
-              <strong>Fake KYC</strong> - Identify requests asking for documents, OTP, or personal info
-            </div>
-          </div>
-          <div class="featureItem">
-            <div class="featureText">
-              <strong>WhatsApp Fraud</strong> - Analyze suspicious messages and forwarded content
-            </div>
-          </div>
-          <div class="featureItem">
-            <div class="featureText">
-              <strong>Courier Scams</strong> - Detect fake delivery and package collection attempts
-            </div>
-          </div>
-          <div class="featureItem">
-            <div class="featureText">
-              <strong>Senior Protection</strong> - Family alerts and warning messages for elderly users
-            </div>
-          </div>
-          <div class="featureItem">
-            <div class="featureText">
-              <strong>Hinglish Support</strong> - Warnings and tips in Hindi and Hinglish for better understanding
-            </div>
-          </div>
-          <div class="featureItem">
-            <div class="featureText">
-              <strong>Offline Mode</strong> - Some features work even without internet connection
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PRICING SECTION -->
-    <section class="highlight">
-      <div class="wrap">
-        <div class="sectionHead">
-          <span class="sectionTag">Pricing</span>
-          <h2>Apni Zaroorat ke Hisaab se Choose Karein</h2>
-        </div>
-
-        <div class="grid" style="grid-template-columns: repeat(3, 1fr); margin-top:40px;">
-          <div class="card" style="border:2px solid rgba(31,132,73,.2);">
-            <div style="text-align:center; margin-bottom:20px;">
-              <div style="font-size:14px; color:var(--green); font-weight:900; text-transform:uppercase; margin-bottom:8px;">Basic</div>
-              <div style="font-size:32px; font-weight:900; color:var(--navy);">Free</div>
-              <div style="font-size:12px; color:var(--text-light); margin-top:4px;">Forever</div>
-            </div>
-            <div class="featuresList" style="grid-template-columns:1fr; gap:12px; margin:20px 0; border:none;">
-              <div class="featureItem" style="border:none; padding:0; background:transparent;">
-                <div class="featureText">Basic VPN (limited)</div>
-              </div>
-              <div class="featureItem" style="border:none; padding:0; background:transparent;">
-                <div class="featureText">Limited link checks</div>
-              </div>
-              <div class="featureItem" style="border:none; padding:0; background:transparent;">
-                <div class="featureText">Basic DNS filtering</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card" style="border:3px solid var(--saffron); transform:scale(1.05); box-shadow: 0 20px 50px rgba(255,107,53,.25);">
-            <div style="display:inline-block; background:var(--saffron); color:white; padding:6px 12px; border-radius:8px; font-size:11px; font-weight:900; margin-bottom:16px;">Popular</div>
-            <div style="text-align:center; margin-bottom:20px;">
-              <div style="font-size:14px; color:var(--saffron); font-weight:900; text-transform:uppercase; margin-bottom:8px;">Plus</div>
-              <div style="font-size:32px; font-weight:900; color:var(--navy);">₹99</div>
-              <div style="font-size:12px; color:var(--text-light); margin-top:4px;">Per Month</div>
-            </div>
-            <div class="featuresList" style="grid-template-columns:1fr; gap:12px; margin:20px 0; border:none;">
-              <div class="featureItem" style="border:none; padding:0; background:transparent;">
-                <div class="featureText"><strong>Unlimited VPN</strong></div>
-              </div>
-              <div class="featureItem" style="border:none; padding:0; background:transparent;">
-                <div class="featureText"><strong>Unlimited Scam Checks</strong></div>
-              </div>
-              <div class="featureItem" style="border:none; padding:0; background:transparent;">
-                <div class="featureText"><strong>UPI & QR Safety</strong></div>
-              </div>
-              <div class="featureItem" style="border:none; padding:0; background:transparent;">
-                <div class="featureText"><strong>DNS Protection</strong></div>
-              </div>
-              <div class="featureItem" style="border:none; padding:0; background:transparent;">
-                <div class="featureText"><strong>All Features</strong></div>
-              </div>
-            </div>
-            <a class="btn primary" style="width:100%; margin-top:20px;">Get Plus</a>
-          </div>
-
-          <div class="card" style="border:2px solid rgba(31,132,73,.2);">
-            <div style="text-align:center; margin-bottom:20px;">
-              <div style="font-size:14px; color:var(--green); font-weight:900; text-transform:uppercase; margin-bottom:8px;">Family</div>
-              <div style="font-size:32px; font-weight:900; color:var(--navy);">₹199</div>
-              <div style="font-size:12px; color:var(--text-light); margin-top:4px;">Per Month</div>
-            </div>
-            <div class="featuresList" style="grid-template-columns:1fr; gap:12px; margin:20px 0; border:none;">
-              <div class="featureItem" style="border:none; padding:0; background:transparent;">
-                <div class="featureText">Everything in Plus</div>
-              </div>
-              <div class="featureItem" style="border:none; padding:0; background:transparent;">
-                <div class="featureText"><strong>Family Safety Mode</strong></div>
-              </div>
-              <div class="featureItem" style="border:none; padding:0; background:transparent;">
-                <div class="featureText"><strong>5 Family Members</strong></div>
-              </div>
-              <div class="featureItem" style="border:none; padding:0; background:transparent;">
-                <div class="featureText"><strong>Senior Protection</strong></div>
-              </div>
-            </div>
+            <h4>Get Risk Score & Recommendations</h4>
+            <p>Receive risk level (Low/Medium/High), reason for suspicion, and safe next action steps.</p>
           </div>
         </div>
       </div>
@@ -1210,12 +1270,12 @@
       <div class="wrap">
         <div class="ctaBlock">
           <div>
-            <h3>Bharat Suraksha Ab Aapke Hath Mein</h3>
-            <p>Complete digital safety with Bharat Fraud Shield. Get VPN encryption, AI scam detection, and family protection today.</p>
+            <h3>Protect Your Family Today</h3>
+            <p>Get AI-powered scam detection, VPN encryption, DNS protection, and family safety. Join thousands of protected users.</p>
           </div>
           <div class="ctaActions">
-            <a class="btn" href="mailto:support@bharatfraudshield.com?subject=Early%20Access%20Request">Request Early Access</a>
-            <a class="btn" href="tel:+919876543210">Call Us</a>
+            <a class="btn" href="mailto:support@connectsecurly.com?subject=Early%20Access%20Request">Get Early Access</a>
+            <a class="btn" href="#ai-tool">Explore Scam Shield</a>
           </div>
         </div>
       </div>
@@ -1227,65 +1287,224 @@
     <div class="wrap">
       <div class="footGrid">
         <div class="footCol">
-          <h4>About Us</h4>
-          <p>Bharat Fraud Shield protects Indian digital citizens from online fraud and scams with AI-powered technology.</p>
+          <h4>About ConnectSecurly</h4>
+          <p>ConnectSecurly protects your internet, your payments, and your family from online scams with AI-powered technology and defense mechanisms.</p>
           <p style="margin-top:12px; font-size:12px; color:rgba(255,255,255,.6);">
-            Made with ❤️ for Bharat
+            Made for Indian Digital Safety
           </p>
         </div>
 
         <div class="footCol">
-          <h4>Suraksha Features</h4>
-          <p><a href="#features">VPN Encryption</a></p>
-          <p><a href="#features">DNS Suraksha</a></p>
-          <p><a href="#scamshield">Fraud Shield</a></p>
-          <p><a href="#features">UPI Safety</a></p>
-          <p><a href="#features">Family Protection</a></p>
+          <h4>Features</h4>
+          <p><a href="#features">VPN Protection</a></p>
+          <p><a href="#features">Defense+ DNS Shield</a></p>
+          <p><a href="#features">AI Scam Shield</a></p>
+          <p><a href="#features">UPI & QR Safety</a></p>
+          <p><a href="#features">Family Safety Mode</a></p>
         </div>
 
         <div class="footCol">
-          <h4>Contact & Support</h4>
-          <p>Email: <a href="mailto:support@bharatfraudshield.com">support@bharatfraudshield.com</a></p>
+          <h4>Support</h4>
+          <p>Email: <a href="mailto:support@connectsecurly.com">support@connectsecurly.com</a></p>
           <p>Phone: <a href="tel:+919876543210">+91 98765 43210</a></p>
           <p>Hours: Mon-Fri 9AM-6PM IST</p>
-          <p style="margin-top:12px;">
-            <a href="#" style="margin-right:12px;">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-          </p>
+          <p style="margin-top:12px;"><a href="mailto:support@connectsecurly.com">Contact Support</a></p>
         </div>
       </div>
 
       <div class="footBottom">
-        <div>© 2026 Bharat Fraud Shield. All rights reserved. | Digital Suraksha for All</div>
+        <div>© 2026 ConnectSecurly. All rights reserved. | VPN • DNS • AI Scam Shield</div>
         <div style="display:flex; gap:16px;">
           <a href="#" title="Facebook">f</a>
           <a href="#" title="Twitter">𝕏</a>
           <a href="#" title="Instagram">📷</a>
-          <a href="#" title="YouTube">▶️</a>
         </div>
       </div>
     </div>
   </footer>
 
   <script>
-    // Simple scroll animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+    // AI Scam Detection Logic
+    const scamPatterns = {
+      high: [
+        { pattern: /click|urgent|verify|confirm|update|action required/i, weight: 1.5 },
+        { pattern: /otp|password|pin|banking|account|suspended|locked/i, weight: 1.8 },
+        { pattern: /won|congratulations|prize|reward|claim|₹|lakhs|crores|jackpot/i, weight: 1.6 },
+        { pattern: /bit\.ly|tinyurl|short link|shorten|http:\/\/(?!https)/i, weight: 1.7 },
+        { pattern: /confirm identity|verify account|kyc|aadhar|pan|ssn/i, weight: 1.8 },
+        { pattern: /limited time|act now|don't miss|hurry|final notice|expires|deadline/i, weight: 1.5 }
+      ],
+      medium: [
+        { pattern: /link|click here|click|download|visit/i, weight: 1.2 },
+        { pattern: /offer|deal|discount|save|free|special/i, weight: 1.0 },
+        { pattern: /information|details|profile|update|confirm/i, weight: 0.8 }
+      ],
+      indicators: {
+        suspicious_links: /bit\.ly|tinyurl|short|http:\/\/(?!https)|goo\.gl/i,
+        urgent_language: /urgent|immediately|today|now|rush|hurry|emergency/i,
+        money_related: /₹|$|payment|transfer|money|account|banking|upi|paypal|credit card/i,
+        personal_info: /password|otp|pin|aadhar|pan|ssn|id card|kyc|verification/i,
+        fake_authority: /bank|police|government|rbi|nbi|amazon|flipkart|google|fedex|courier/i
+      }
     };
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.animation = 'slideUp 0.6s ease forwards';
-          observer.unobserve(entry.target);
+    function analyzeScam() {
+      const input = document.getElementById('scamInput').value.trim();
+      const resultBox = document.getElementById('resultBox');
+      const riskLevel = document.getElementById('riskLevel');
+      const resultDetails = document.getElementById('resultDetails');
+      const analyzeBtn = document.querySelector('.analyzeBtn');
+
+      if (!input) {
+        alert('Please paste a message or link to analyze');
+        return;
+      }
+
+      // Show analyzing state
+      analyzeBtn.classList.add('analyzing');
+      analyzeBtn.textContent = '🔄 Analyzing...';
+      analyzeBtn.disabled = true;
+
+      // Simulate AI analysis delay
+      setTimeout(() => {
+        const analysis = performAIAnalysis(input);
+        
+        // Update risk level
+        riskLevel.className = 'riskLevel ' + analysis.risk;
+        riskLevel.textContent = analysis.riskText.toUpperCase();
+
+        // Build result details
+        let detailsHTML = '';
+        analysis.flags.forEach(flag => {
+          detailsHTML += `
+            <div class="resultItem">
+              <strong>${flag.type}</strong>
+              <span>${flag.description}</span>
+            </div>
+          `;
+        });
+
+        if (analysis.recommendation) {
+          detailsHTML += `
+            <div class="resultItem" style="border-left-color: var(--saffron);">
+              <strong>✓ Safe Action</strong>
+              <span>${analysis.recommendation}</span>
+            </div>
+          `;
+        }
+
+        resultDetails.innerHTML = detailsHTML;
+        resultBox.classList.add('show');
+
+        // Reset button
+        analyzeBtn.classList.remove('analyzing');
+        analyzeBtn.textContent = '🔎 Analyze with AI';
+        analyzeBtn.disabled = false;
+
+        // Scroll to results
+        resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 1500);
+    }
+
+    function performAIAnalysis(text) {
+      let score = 0;
+      const flags = [];
+
+      // Check for high-risk patterns
+      scamPatterns.high.forEach(item => {
+        if (item.pattern.test(text)) {
+          score += item.weight;
         }
       });
-    }, observerOptions);
 
-    document.querySelectorAll('.card').forEach(el => {
-      observer.observe(el);
-    });
+      // Check for medium-risk patterns
+      scamPatterns.medium.forEach(item => {
+        if (item.pattern.test(text)) {
+          score += item.weight;
+        }
+      });
+
+      // Check specific indicators
+      Object.entries(scamPatterns.indicators).forEach(([key, pattern]) => {
+        if (pattern.test(text)) {
+          flags.push(detectFlag(key));
+        }
+      });
+
+      // Determine risk level
+      let risk, riskText;
+      if (score >= 3.5) {
+        risk = 'high';
+        riskText = '⚠️ High Risk';
+      } else if (score >= 2.0) {
+        risk = 'medium';
+        riskText = '⚠️ Medium Risk';
+      } else {
+        risk = 'low';
+        riskText = '✓ Low Risk';
+      }
+
+      const recommendation = getRecommendation(text, risk);
+
+      return {
+        risk,
+        riskText,
+        score,
+        flags,
+        recommendation
+      };
+    }
+
+    function detectFlag(key) {
+      const flagMap = {
+        suspicious_links: {
+          type: '🔗 Suspicious Links Detected',
+          description: 'URL shorteners and suspicious domain links detected. Do not click unknown links.'
+        },
+        urgent_language: {
+          type: '⏰ Urgency Detected',
+          description: 'Uses urgent or pressuring language to make you act quickly without thinking.'
+        },
+        money_related: {
+          type: '💰 Money Related',
+          description: 'Mentions money, payments, or financial information. Be cautious about financial details.'
+        },
+        personal_info: {
+          type: '🔐 Personal Info Requested',
+          description: 'Asks for sensitive information like passwords, OTP, or identity documents. Never share these!'
+        },
+        fake_authority: {
+          type: '🏢 False Authority',
+          description: 'Impersonates legitimate company or government agency to gain trust.'
+        }
+      };
+      return flagMap[key] || { type: 'Unknown', description: 'Could not determine' };
+    }
+
+    function getRecommendation(text, risk) {
+      if (risk === 'high') {
+        if (/otp|password|pin/i.test(text)) {
+          return 'NEVER share OTP, passwords, or PINs. Legitimate companies never ask for these via message or link.';
+        }
+        if (/click|link|visit|download/i.test(text)) {
+          return 'DO NOT click suspicious links. If you received from a company, contact them directly using official phone number from their website.';
+        }
+        if (/payment|upi|transfer/i.test(text)) {
+          return 'DO NOT make any payment. Verify with the official app or website directly before sending money.';
+        }
+        return 'This appears to be a scam attempt. Do not respond or click any links. Block this contact.';
+      }
+      if (risk === 'medium') {
+        return 'Be cautious. Verify the source independently before taking any action or sharing information.';
+      }
+      return 'This message appears to be safe, but always be cautious with unexpected messages.';
+    }
+
+    function setExample(text) {
+      document.getElementById('scamInput').value = text;
+      document.getElementById('scamInput').focus();
+      setTimeout(() => analyzeScam(), 300);
+    }
   </script>
 </body>
 </html>
